@@ -1,4 +1,5 @@
-# List
+
+#! List
 # Uygulama içerisinde anlık olarak bizim için değer tutan yapılarıdr. Birden fazla tipte değerleri içerisinde barındırabilirler. List'ler RAM üzerinde tutulduğu için uygulama çalıştığı sürece üzerine eklenilen yeni değerleri tutatlar. Uygulama kapatıldığında ise ilk yaratıldıkları hale dönerler. örneğin futbol takımlarının tuutlduğu bir listem olsun.
 # futbol_takimlari = ['Galatasaray', 'Beşiktaş']
 # Bu liste içerisine uygulama run time'da iken 2 yeni takım daha eklenilsin
@@ -180,3 +181,63 @@ qwe = input("Type: ")
 
 for i in qwe:
     print(type(i))
+
+# region Example 8
+# sayilar = []  # burada içi boş bir liste tanımladık
+# for i in range(1, 10):
+#     sayilar.append(i)  # append() fonksiyonu ilgili listeye her bir adımda i sayacının üzerinde tutuğu değeri eklemeye yaradı.
+# print(sayilar)
+#
+# print([x for x in range(1, 10)])
+# endregion
+
+
+# region Example 9
+# rakamların karesini hespalayarak bir listeye dolduralım
+# rakamlar = []
+# for i in range(1, 10):
+#     rakamlar.append(i ** 2)
+# print(rakamlar)
+#
+# print([i * i for i in range(1, 10)])
+# endregion
+
+
+# region Example 10
+# 50 - 100 arasında 3 tam bölünen sayıları karesini alarak bir listeye ekleyim
+# sayilar = []
+# for i in range(50, 101):
+#     if i % 3 == 0:
+#         sayilar.append(i ** 2)
+# print(sayilar)
+#
+# print([i ** 2 for i in range(50, 101) if i % 3 == 0])
+# endregion
+
+
+# region Example 11
+# Kullanıcıdan bir söz öbeği alalım. boşluk olmayacak şekilde karakter karakter ekrana yazdıralım
+# word = input("Enter a word: ")
+# lst = []
+# for i in range(0, len(word), 1):
+#     if word[i] != " ":
+#         lst.append(word[i])
+# print(lst)
+# yukarıda ki örnekte bir string ifade içerisinde kurduğumuz döngü vasıtasyla index mantığıyla adım adım içerisinde dolaşarak çözüme gittik.
+# lst_1 = []
+# for char in word:
+#     if char == " ":
+#         continue
+#     lst_1.append(char)
+# print(lst_1)
+# buarda ki döngü de ise bir ifade içerisinde ki her bir karakteri döngü içerisine gönderdik. Yani adım adım karekterlerin kendisini gönderdik.
+
+# Bu örnek üzerinden şu yorumu yapabiliriz. C#, java, javascrip gibi programlama dilelrinde sayac mantığı çalışan for, python programlama dilinde hem sayaç hemde itarable mantığı ile çalışır. Yukarı da saydığımız programlama dillerinde itarable mantığını yürütmek için bir başka döngü tipi olan foreach kullanılamkatadır.
+# endregion
+
+# Aşağıda ki iki örnekte bir liste içerisinde ki index mantığı gösterilmektedir. Listelerde ki index mantığı sıfırdan başlar ve pozitif yönde vektörel olarak artarak devam eder.
+sayilar = [2, 2132, 45, 98]
+print(sayilar[1])  # sayilar listesinin 1. index'sinde tutulan değeri teslim eder.
+
+kelime = "burak yılmaz"
+print(kelime[6])  # kelime ifadesinin 6. index'sinde bulunan değeri teslim eder.
