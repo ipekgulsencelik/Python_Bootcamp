@@ -5,30 +5,41 @@
 # Değişken (Variable) Nedir?
 # Değişkenler bizim için geçici olarak üzerlerinde değer tutan yapılardır. Değişkenleri günlük hayatımızda kullandığımız kutulara benzetebiliriz. Nasıl ki kutularda bir şeyler saklıyorsak değişkenler içerisinde biz kullanıcıdan aldığımız yada varsayılan olarak atadığımız değerleri saklıyoruz. Kutuların sahip oldukları şekillere göre içerisinde eşya saklarız, bu husus yazılımda da aynı şekildedir. Yani değişkenlerin tipleri mevcuttur. Tam sayılar için int, sözel ifadeler için string, doğru yanlış (boolean) tip kullanabiliriz.
 # Değişkenler RAM (Random Access Memory) üzerinde tutulurlar. Uygulama kapatıldığında bütün değişkenler sıfırlanır. RAM üzerinden silinirler.
+# Yazılımda da benzer bir durum vardır:
+#   - Tam sayılar için: int
+#   - Ondalıklı sayılar için: float
+#   - Metinsel ifadeler için: str (string)
+#   - Doğru / Yanlış için: bool (boolean)
+#
+# Program kapandığında RAM temizlenir ve değişkenler silinir.
 
 #! Variable (Değişken)
 #? Değişken tanımlarken dikkat edilecek hususlar
 #* 1. Değişken isimleri rakam ile başlamaz
 #* 2. Boşluk karakteri içermez, boşluk yerine "_" sembolü kullanılır
-#* 3. Türkçe karakter kullanmayalım.
+#* 3. Türkçe karakter kullanmamaya özen gösterelim.
 
 #todo: Not --> Yukarıdaki satırlar yorum satırıdır (Comment Line). Interpeter tarafından yorumlanmazlar yani çalıştırılmazlar.
 #! Not: IDE'ler kodları yukardan aşağıya doğru satır satır çalıştırırlar.
 
 # user_name = 'beast'
 # print(user_name)
-# print(type(user_name))
+# print(type(user_name))    # <class 'str'>
 
 #! Not: Python’da değişkenler içerisine attığımız değerin tipine sahip olurlar.
 #todo: Yukarıdaki user_name değişkeninin tipi string'tir.
 
 # user_name = 100
 # print(user_name)
-# print(type(user_name))
+# print(type(user_name))    # <class 'int'>
 
-x = 10        #* x değişkenin tipi integer'dır
-y = 3.14      #? y değişkeninin tipi float'tır
-is_active = True   #* True yada False değer alan değişkenler boolean yada bool olarak isimlendirilir.
+# x = 10        #* x değişkenin tipi integer'dır
+# y = 3.14      #? y değişkeninin tipi float'tır
+# is_active = True   #* True yada False değer alan değişkenler boolean yada bool olarak isimlendirilir.
+
+# print(x, type(x))
+# print(y, type(y))
+# print(is_active, type(is_active))
 
 # Değişken Tanımlama
 # C ailesine ait programlama dilelrinde, java, php gibi programlama dillerinde değişken tanımlarken ilk önce değişkenin tip sonra değişken adı gelmektedir
@@ -42,38 +53,53 @@ is_active = True   #* True yada False değer alan değişkenler boolean yada boo
 #
 # variableType = type(number)  # burada type() fonksiyonu bize bir değişkenin ne tipte olduğunu gösterir. Type() fonksiyonun sonucunda bize gelen değeri "variableType" isimli değişkene assigned ettik.
 # print(variableType)
-#
+# print("number değişkeninin tipi:", variable_type)
+
 #! ARİTMATİKSEL İŞLEMLER
 
+""" 
 number_1 = 2
 number_2 = 4
 
 result = number_1 + number_2
 
 print(result)
+ """
 
+""" 
+# Dikkat: input() fonksiyonuyla alınan her değer string (metin) tipindedir.
 number_1 = input("Type a number: ")
 number_2 = input("Type a number: ")
 
 result = number_1 + number_2
+# Burada toplama işlemi matematiksel değildir!
+# İki string yan yana eklenir (concatenation). Örneğin:
+# number_1 = "5"
+# number_2 = "7"
+# result = "57" olur, 12 olmaz.
 
-print(result)
+print(result) 
+"""
 
-full_name = 'burak' + ' yılmaz'
-print(full_name)
+""" 
+full_name = 'burak' + ' yılmaz'  # iki string yan yana eklenir
+print(full_name) 
+"""
 
 # # Kullanıcıdan alınan 2 adet sayı üzerinden temel 4 işlem yapan uygulamayı yazınız.
-# number_1 = int(input("Lütfen bir sayı giriniz: "))
+# number_1 = int(input("Lütfen bir sayı giriniz: ")) #* int() ile string → sayıya dönüştürülür
 # number_2 = int(input('Lütfen bir sayı giriniz: '))
 # # Not: input() fonksiyonuyla kullanıcıdan değer aldığımızda aldığımız değeri tipi her zaman string'tir. Biz burada aritmatiksel bir işlem yapmak istediğimzden ötürü kullanıcıdan gelen değerleri sayısal bir tipe dönüştürmemiz gerekmektedir. Bu bağlamda python içerisinde built-in olarak bulunan int() fonksiyonunu kullanacağız. int() fonksiyonu içerisine verilen değeri int tipine dönüştürmektedir.
 # toplam = number_1 + number_2
 
+""" 
 number_1 = int(input("Type a number: "))
 number_2 = int(input("Type a number: "))
 
 result = number_1 - number_2
 
 print(result)
+ """
 
 # Aşağıda ki 3 satır kod aynı çıktıyı verir.
 # print("Toplam:", toplam)  # burada string ifade ile toplam değişkenimizi birbirine bağladık.
@@ -115,4 +141,5 @@ r = float(input("Yarı çap: "))
 alan = math.pi * r ** 2
 cevre = 2 * math.pi * r
 
+# :.2f → virgülden sonra 2 basamak göster
 print(f"Cevre: {cevre:.2f}\nAlan: {alan:.2f}")
