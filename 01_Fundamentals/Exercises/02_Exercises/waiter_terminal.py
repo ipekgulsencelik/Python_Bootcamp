@@ -18,7 +18,6 @@
 #       * En çok sipariş edilen ürünü gösterme
 # - 300 TL ve üzeri alışverişte %10 indirim
 # - Hiç sipariş yoksa hesap kesilmemesi
-# - Fonksiyon ve list kullanılmadan yazılmıştır.
 # -----------------------------------------------------------------------------
 
 print("=== GARSON TERMINALINE HOS GELDINIZ ===")
