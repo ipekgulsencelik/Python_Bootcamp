@@ -49,50 +49,75 @@ print(f"İçecek  : {drink_price} TL")
 print("------------------------------\n")
 print(f"Taking orders for table {table}...\n")
 
-try:
-    while True:
-        order = input("Ürün giriniz (Çorba/Kebap/Salata/İçecek) → 'hesap' ile bitir: ").lower()
+while True:
+    order = input("Ürün giriniz (Çorba/Kebap/Salata/İçecek) → 'hesap' ile bitir: ").lower()
 
-        if order == "hesap":
-            break
+    if order == "hesap":
+        break
 
-        match order:
-            case "çorba" | "corba":
-                qty = int(input("Kaç adet çorba?: "))
-                if qty <= 0:
-                    print("Adet geçerli değil.\n")
-                    continue
-                soup_qty += qty
-                total += qty * soup_price
-                print(f"{qty} adet çorba eklendi. Ara toplam: {total} TL\n")
-            case "kebap":
-                qty = int(input("Kaç adet kebap?: "))
-                if qty <= 0:
-                    print("Adet geçerli değil.\n")
-                    continue
-                kebab_qty += qty
-                total += qty * kebab_price
-                print(f"{qty} adet kebap eklendi. Ara toplam: {total} TL\n")
-            case "salata":
-                qty = int(input("Kaç adet salata?: "))
-                if qty <= 0:
-                    print("Adet geçerli değil.\n")
-                    continue
-                salad_qty += qty
-                total += qty * salad_price
-                print(f"{qty} adet salata eklendi. Ara toplam: {total} TL\n")
-            case "içecek" | "icecek":
-                qty = int(input("Kaç adet içecek?: "))
-                if qty <= 0:
-                    print("Adet geçerli değil.\n")
-                    continue
-                drink_qty += qty
-                total += qty * drink_price
-                print(f"{qty} adet içecek eklendi. Ara toplam: {total} TL\n")
-            case _:
-                print("Menüde böyle bir ürün yok.\n")
-except Exception as err:
-    print(f"Hata oluştu: {err}\nLütfen girdi formatını kontrol edin.")
+    # Her ürün için adet okuma kısmında try/except ile hata engelleme
+    if order == "çorba" or order == "corba":
+        try:
+            qty = int(input("Kaç adet çorba?: "))
+        except ValueError:
+            print("Adet sayısal olmalıdır.\n")
+            continue
+
+        if qty <= 0:
+            print("Adet geçerli değil.\n")
+            continue
+
+        soup_qty += qty
+        total += qty * soup_price
+        print(f"{qty} adet çorba eklendi. Ara toplam: {total} TL\n")
+
+    elif order == "kebap":
+        try:
+            qty = int(input("Kaç adet kebap?: "))
+        except ValueError:
+            print("Adet sayısal olmalıdır.\n")
+            continue
+
+        if qty <= 0:
+            print("Adet geçerli değil.\n")
+            continue
+
+        kebab_qty += qty
+        total += qty * kebab_price
+        print(f"{qty} adet kebap eklendi. Ara toplam: {total} TL\n")
+
+    elif order == "salata":
+        try:
+            qty = int(input("Kaç adet salata?: "))
+        except ValueError:
+            print("Adet sayısal olmalıdır.\n")
+            continue
+
+        if qty <= 0:
+            print("Adet geçerli değil.\n")
+            continue
+
+        salad_qty += qty
+        total += qty * salad_price
+        print(f"{qty} adet salata eklendi. Ara toplam: {total} TL\n")
+
+    elif order == "içecek" or order == "icecek":
+        try:
+            qty = int(input("Kaç adet içecek?: "))
+        except ValueError:
+            print("Adet sayısal olmalıdır.\n")
+            continue
+
+        if qty <= 0:
+            print("Adet geçerli değil.\n")
+            continue
+
+        drink_qty += qty
+        total += qty * drink_price
+        print(f"{qty} adet içecek eklendi. Ara toplam: {total} TL\n")
+
+    else:
+        print("Menüde böyle bir ürün yok.\n")
 
 # ---------------- HESAP DÖKÜMÜ ----------------
 
@@ -143,9 +168,9 @@ else:
 
     # Ödeme tipi
     payment_type = ""
-    while payment_type not in ["nakit", "kart"]:
+    while payment_type != "nakit" and payment_type != "kart":
         payment_type = input("Ödeme türü (nakit/kart): ").lower()
-        if payment_type not in ["nakit", "kart"]:
+        if payment_type != "nakit" and payment_type != "kart":
             print("Geçersiz ödeme türü. Lütfen 'nakit' veya 'kart' giriniz.")
 
     card_commission = 0.0
@@ -159,7 +184,7 @@ else:
     print(f"Ödenecek net tutar  : {grand_total:.2f} TL")
     print("------------------------")
 
-    # En çok sipariş edilen ürünü bulma
+    # En çok sipariş edilen ürünü bulma (liste KULLANMADAN)
     most_name = "Yok"
     most_qty = 0
 
