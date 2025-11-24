@@ -241,3 +241,77 @@ print(sayilar[1])  # sayilar listesinin 1. index'sinde tutulan değeri teslim ed
 
 kelime = "burak yılmaz"
 print(kelime[6])  # kelime ifadesinin 6. index'sinde bulunan değeri teslim eder.
+
+
+# region Craft Mail Address
+#! users = ['Burak Yılmaz', 'Rana Nur Ceylan', 'İpek Yılmaz', 'Kerim Abdurrahman Burak Yılmaz']
+#? users listesindeki kullanıcılardan kurumsal mail adresi craft ediyoruz.
+#* sample mail address --> rana.ceylan@outlook.com
+#todo: craft mail address, mail_address listesine eklenerek ekrana basılacak
+#? Hint: split(), bir listenin uzunluğu ne olursa olsun son elemana nasıl get ederim
+
+users = ['Burak Yılmaz', 'Rana Nur Ceylan', 'İpek Yılmaz', 'Kerim Abdurrahman Burak Yılmaz']
+mail_addresses = []
+domain_name = '@outlook.com'
+
+for user in users:
+    user_names = user.lower().split(' ')     # ['burak','yılmaz']
+    mail_address = f"{user_names[0]}.{user_names[-1]}{domain_name}"
+    mail_addresses.append(mail_address)
+
+print(mail_addresses)
+
+# ÇIKTI: ['burak.yılmaz@outlook.com', 'rana.ceylan@outlook.com', 'ipek.yılmaz@outlook.com', 'kerim.yılmaz@outlook.com']
+# endregion
+
+
+# region Labwork
+#! end-user bir söz öbeği alalım
+#? sample --> buRaIk yi?lm2aZu
+#* sesli harfleri --> sesli_herfler = []
+#* sesssiz harfleri --> sessiz_harfler = []
+#* yazım hatalarını --> typo_characters = []
+#* space karekteri ignore edilecek.
+#* ilgili listelerdeki hiç bir eleman tekrar etemeyecek
+
+text = input("Metni giriniz: ")
+
+# Sesli ve sessiz harflerin tutulacağı listeler
+sesli_harfler = []
+sessiz_harfler = []
+
+# Typo karakterlerin tutulacağı liste
+typo_characters = []
+
+# Alfabe (kontrol için)
+alfabe = "abcçdefgğhıijklmnoöprsştuüvyz"
+
+# Sesli harfler
+sesliler = "aeıioöuü"
+
+# Metindeki her karakteri dolaşalım
+for ch in text.lower():      # küçük harfe çevir
+    if ch == " ":            # boşlukları geç
+        continue
+
+    if ch not in alfabe:
+        # Harf değilse typo listesine ekle (bir kere)
+        if ch not in typo_characters:
+            typo_characters.append(ch)
+        continue
+
+    # Sesli harf ise sesli listesine ekle
+    if ch in sesliler:
+        if ch not in sesli_harfler:
+            sesli_harfler.append(ch)
+    else:
+        # Sessiz harf ise sessiz listesine ekle
+        if ch not in sessiz_harfler:
+            sessiz_harfler.append(ch)
+
+# Sonuçları yazdıralım
+print("\n--- SONUÇLAR ---")
+print("Sesli harfler :", sesli_harfler)
+print("Sessiz harfler:", sessiz_harfler)
+print("Typo karakterler:", typo_characters)
+# endregion
