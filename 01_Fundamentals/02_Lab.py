@@ -1,18 +1,24 @@
 
 #! Karar Mekanizması (If-Else)
-# Uygulamalarımızda belirli şartlar doğrultusunda şartın sağlaması yada sağlamaması durumuna göre uygulamaka farklı işlem yapılmasını temin etmektedir.
+# Uygulamalarımızda belirli şartlar doğrultusunda şartın sağlanması ya da sağlanmaması durumuna göre uygulamada farklı işlem yapılmasını temin etmektedir.
+# Uygulamalarımızda belirli şartlara göre farklı işlemler yürütmek için if-elif-else karar yapısı kullanılır.
+# Kullanıcı girdilerini kontrol etme, hesaplama ve yönlendirme işlemlerinde en temel kontrol mekanizmasıdır.
 
 # region Sample
+# 💡 Not:
+# - `if` şartı sağlanıyorsa `if` bloğu çalışır, `else` çalışmaz.
+# - Şart sağlanmasa bile, alttaki bağımsız `print("Hello..!")` her zaman çalışır.
+#
 # if 3 > 2:
 #     print("Merhaba..!")
 # else:
 #     print("Salve..!")
 #
-#
 # print("Hello..!")
 # endregion
 
-# region Example 
+
+# region Basic
 #  x = int(input("Tam Sayı: "))
 #  y = int(input("Tam Sayı: "))
 #
@@ -22,7 +28,11 @@
 #     print(f"{y} büyüktür..!")
 # endregion
 
-# region Example 1
+
+# region Comparison
+# 💡 Not:
+# - `elif` sadece bir önceki koşul sağlanmadığında kontrol edilir.
+#
 #  x = int(input("Tam Sayı: "))
 #  y = int(input("Tam Sayı: "))
 #
@@ -35,8 +45,9 @@
 # endregion
 
 
-# region Example 2
-# Kullancıdan alınan sayı pozitif mi negatif mi nötr mü?
+# region Pozitif/Negatif/Nötr
+# Kullanıcıdan alınan sayı pozitif mi negatif mi nötr mü?
+#
 # x = int(input("Tam sayı giriniz: "))
 #
 # if x > 0:
@@ -48,19 +59,20 @@
 # endregion
 
 
-# region Example 3
+# region Even-Odd Check
 # Kullanıcıdan alınan sayı çift mi tek mi?
 # Not: Mod işlemi için "%" sembolünü kullanabilirsiniz
+#
 # x = int(input("Lütfen bir tam sayı giriniz: "))
 #
 # if x % 2 == 0:
 #     print(f"{x} çifttir..!")
 # else:
-#     print(f"{x} tekrir..!")
+#     print(f"{x} tektir..!")
 # endregion
 
 
-# region Example 4
+# region Season-Month Mapping
 # Kullanıcıdan alınan mevsim bilgisine göre ayları ekrana basan uygulamayı yazınız
 # mevsim = input("Lütfen mevsim girin: ").lower()  # burada lower() fonksiyonu ile kullanıcıdan gelen bilgiyi küçük harflere dönüştürerek mevsim değişkenine atamamız gerekmektedir.
 #
@@ -78,10 +90,13 @@
 
 
 #! and - or
+# `and` → tüm koşullar true ise
+# `or`  → koşullardan en az biri true ise sonuç true olur.
 
 
-# region Example 5
+# region Max-Of-Three Numbers
 # Kullanıcıdan alınan 3 adet sayıyı büyüklük olarak karşılaştırın. büyük olan sayıyı ekrana yazalım
+#
 # x = int(input("Sayı giriniz: "))
 # y = int(input("Sayı giriniz: "))
 # z = int(input("Sayı giriniz: "))
@@ -100,21 +115,21 @@
 # endregion
 
 
-# region Example 6
+# region Market-Department Detection
 # Kullanıcıdan bir adet ürün alalım
-#? domates, biber yada patlican ise sebze reyonuna
+#? domates, biber ya da patlican ise sebze reyonuna
 #* tablet, bilgisayar, telefon ise teknoloji reyonuna
 #! şampuan, diş macunu, parfüm ise kozmetik reyonuna
 #
 # urun = input("Aradığınız ürünü girin: ").lower()
 # mesaj = ""
 #
-# if urun == "domatas" or urun == "biber" or urun == "patlican":
+# if urun == "domates" or urun == "biber" or urun == "patlican":
 #     mesaj = "Aradığınız ürün sebze reyonunda"
 # elif urun == "tablet" or urun == "bilgisayar" or urun == "telefon":
 #     mesaj = "Aradığınız ürün teknoloji reyonunda"
 # elif urun == "şampuan" or urun == "diş macunu" or urun == "parfüm":
-#     mesaj = "Aradığınız ürün kişisel bakım retonunda"
+#     mesaj = "Aradığınız ürün kişisel bakım reyonunda"
 # else:
 #     mesaj = "Aradığınız ürün bulunmamaktadır..!"
 #
@@ -122,7 +137,7 @@
 # endregion
 
 
-# region Example 7
+# region Login
 #todo: kullanıcıdan username ve password alalım. 
 # username 'beast', password '123' ise hoşgeldiniz, değilse hatalı kullanıcı bilgileri.
 #
@@ -137,9 +152,10 @@
 
 
 #! Nested If (İç İçe If)
+# İç içe if yapıları daha karmaşık karar akışlarını modellemek için kullanılır.
 
 
-# region Example 8
+# region Login + BMI
 # kullanıcı uygulamaya login olacak
 # kullanıcı kilo, boy bilgisi girecek ve BMI değerine göre durum feedback verilecek
 #
@@ -171,23 +187,25 @@
 #         f'BMI: {bmi}\n'
 #         f'Status: {status}'
 #     )
-#
 # else:
 #     print('Invalid credentials..!')
 # endregion
 
 
-# region Example 9
-# Kullanıcıdan username ve password ve rol bilgilerini alalım. username beast password 123 ve rol admin yada manager ise yönetici sayfasına yönlendiriliyorsunuz rol member ise kullanıcı sayfasına yöneldiriliyorsunuz
+# region Role-Based Authorization
+# Kullanıcıdan username, password ve rol bilgilerini alalım. 
+# username 'beast', password '123' ve rol 'admin' ya da 'manager' ise yönetici sayfasına yönlendiriliyorsunuz
+# rol 'member' ise kullanıcı sayfasına yönlendiriliyorsunuz
+# 
 # username = input("Kullanıcı adı: ")
 # password = input("Şifre: ")
 # rol = input("Rol: ")
 #
 # if username == "beast" and password == "123":
 #     if rol == "admin" or rol == "manager":
-#         print("Yönetici sayfasına yönlendiriliyorsunuzu..!")
+#         print("Yönetici sayfasına yönlendiriliyorsunuz..!")
 #     elif rol == "member":
-#         print("Kullanıcı sayfasına yönlendiriliyorusunuz..!")
+#         print("Kullanıcı sayfasına yönlendiriliyorsunuz..!")
 #     else:
 #         print("Yetkiniz bulunmamaktadır..!")
 # else:
@@ -195,8 +213,9 @@
 # endregion
 
 
-# region Example 10
-# Kullancıdan aracının kaç gündür trafikte olduğu bilgisini alalım ve aracın hangi servis aralığında olduğunu feedback olarak verelim
+# region Vehicle-Service Check
+# Kullanıcıdan aracının kaç gündür trafikte olduğu bilgisini alalım ve 
+# aracın hangi servis aralığında olduğunu feedback olarak verelim.
 # day = int(input("Aracınız kaç gündür yolda? "))
 #
 # if 1 < day <= 365:  # day > 1 and day <= 365
@@ -208,10 +227,11 @@
 # endregion
 
 
-# region Example 11
-# Kullanıcıdan araç tipini ve hız bilgisini alalım. Şayet otomobil ise ve hız da 60 ve üzeri cezalı 60 altın da ise ceza yok
+# region Vehicle-Speed Penalty
+# Kullanıcıdan araç tipini ve hız bilgisini alalım. 
+# Şayet otomobil ise ve hız 60 ve üzerindeyse cezalı, 60’ın altındaysa ceza yok.
 # Motorsiklet ile otomobil aynı şekilde değerlendirilsin.
-# Kamyon 40 ve üzeri cezalı altında bir hıza sahip ise ceza yok.
+# Kamyon için hız 80 ve üzerindeyse cezalı, 80'in altındaysa ceza yok.
 # print("Menü")
 # print("otomobil")
 # print("kamyon")
@@ -229,24 +249,24 @@
 #     else:
 #         print("Ceza yok..!")
 # elif arac_turu == "motorsiklet":
-#     if hiz >= 40:
+#     if hiz >= 60:
 #         print("Cezalısın..!")
 #     else:
 #         print("Ceza yok..!")
 # else:
-#     print("Lütfen menüde ki araç türlerinden birini giriniz..!")
+#     print("Lütfen menüdeki araç türlerinden birini giriniz..!")
 # endregion
 
 
-# region Example 12
+# region Book-Discount Calculation
 # Bir kitap 5 TL
 # Kullanıcı 1-10 arasında kitap alırsa yüzde 5 indirim
 # 11- 20 yüzde 10 indirim
 # 21-30 yüzde 15 indirim
 # 31- 40 yüzde 20 indirim
 # 41 - 50 yüzde 25 indirim
-# Müşterinin ödeyeceği toplam tutarı ekrana yazdırırnız
-# amount = int(input("How many book you buy?"))
+# Müşterinin ödeyeceği toplam tutarı ekrana yazdırınız
+# amount = int(input("How many books do you want to buy? "))
 # book_price = 5
 #
 # if amount <= 0: 
@@ -266,8 +286,8 @@
 # endregion
 
 
-# region Example 13
-# Harf notu hesaplayan uygulamyı yazın
+# region Letter-Grade Calculation
+# Harf notu hesaplayan uygulamayı yazın
 # vize yüzde 30
 # final yüzde 60
 # ödev yüzde 10 harf notunu etkilesin
@@ -275,7 +295,7 @@
 # final = float(input("Final: "))
 # odev = float(input("Odev: "))
 #
-# if (0 <= vize <= 100) and (0 <= final <= 100) and (0 <= final <= 100):
+# if (0 <= vize <= 100) and (0 <= final <= 100) and (0 <= odev <= 100):
 #     ort = vize * 0.3 + final * 0.6 + odev * 0.1
 #
 #     if 90 <= ort <= 100:
@@ -293,7 +313,7 @@
 #     else:
 #         print("Harf Notu: FF")
 # else:
-#     print("Lütfen doğru not girermisiniz..!")
+#     print("Lütfen doğru not girer misiniz..!")
 # endregion
 
 # region Labwork 1
@@ -341,9 +361,6 @@
 #! araç türü motorsiklet, hız 70'ten büyükse cezalı değilse ceza yok
 #
 # Kullanıcıdan araç türü ve hızını alalım
-# arac_turu = input("Araç türünü giriniz (otomobil/kamyon/motosiklet): ").lower()
-# hiz = int(input("Hızınızı giriniz (km/s): "))
-#
 # vehicle = input('Type your vehicle: ').lower()
 # speed = float(input('Speed: '))
 #
@@ -372,7 +389,7 @@
 
 #! match-case
 
-# region Example 14
+# region Match-Season
 # todo: Kullanıcıdan mevsim bilgisi alıyoruz.
 # ? kullanıcıdan gelen mevsim bilgisine göre ayları ekrana yazdırıyoruz.
 #
@@ -407,7 +424,7 @@
 
 # match-case içerisinde "and" kullanımı
 
-# region Example 15
+# region Match-Book-Discount
 # kitap_miktari = int(input('Satın Alınan Kitap Sayısı: '))
 #
 # if kitap_miktari < 0:
@@ -428,13 +445,19 @@
 
 
 #! Ternary If
+# Tek satırda if-else yazmak için kullanılır.
 
-""" 
-age = int(input('Age: '))
 
-status = 'adult' if age >= 18 else 'child'
-print(status) 
-"""
+# region Ternary Basic
+# age = int(input("Age: "))
+# status = "adult" if age >= 18 else "child"
+# print(status)
+# endregion
+
+
+# 💡 İpucu:
+# - Basit koşullarda ternary if, kodu hem daha kısa hem daha okunabilir yapar.
+
 
 """ 
 number = int(input('Number: '))
@@ -442,25 +465,77 @@ print(f"Status: {'positive' if number > 0 else 'negative'}")
 """
 
 #! Nested Ternary If
-""" 
-exam_score = 75
-result = 'AA' if exam_score >= 80 else 'BB' if exam_score >= 60 else 'CC'
-print(f'Result: {result}')
+# - İç içe ternary if (nested ternary), çok karmaşık hale geldiğinde okunabilirliği düşürür.
+# - Çok dallı koşullarda klasik if-elif-else kullanmak daha sağlıklıdır.
 
+
+# region Nested Ternary
+# exam_score = 75
+# result = 'AA' if exam_score >= 80 else 'BB' if exam_score >= 60 else 'CC'
+# print(f'Result: {result}')
+#
 # yukarı satırdaki nested ternary if'in normal yazılmış hali
-if exam_score >= 80:
-    print('AA')
-else:
-    if exam_score >= 60:
-        print('BB')
-    else:
-        print('CC')
-"""
+# if exam_score >= 80:
+#     print('AA')
+# else:
+#     if exam_score >= 60:
+#         print('BB')
+#     else:
+#         print('CC')
+# endregion
 
 
 #! Try-Except-Finally 
+# Exception Handling (İstisnai Durumları Ele Alma)
+#! Hataları yakalamak ve uygulamanın çökmesini engellemek için kullanılır.
+# Uygulama içerisinde beklenmedik durumlar oluşması halinde uygulamanın raise ettiği hatalara exception deneilmektedir. 
+# Exception'lara neden olabilecek birden fazla durum söz konusudur. 
+# Bu durumlar yazılımcıların yaptıkları mantık hataları, yada son kullanıcının (client) yaptığı hatalar.
 
-# region Example 16
+# Uygulamada istisnai durum oluşmasına neden çok karşıyız? 
+# Çünkü client bizi karşı karşıya getiren en önemli hususlardan birisi uygulamaların raise ettiği exceptinonlardır. 
+# Uygulamada bir exception oluştuğunda uygulama donabilir, kendini kaparabilir yani günün sonunda kullanılamaz hale gelir.
+
+
+# try:
+#     # try bloğu içerisinde hata beklediğimiz kod bloklarını barındırıyoruz. 
+#     # Şayet ilgili kod bloğunda bir hata alınırsa hata oluşan satırın altında kalan 
+#     # kodlar çalıştırılmaz ve otomatik olarak except bloğundaki kodlar çalışır.
+#     pass
+# except:
+#     # try bloğunda bir hata oluştuğunda anında except bloğundaki kodlar çalışır.
+#     pass
+# finally:
+#     # finally bloğu hata oluşsada oluşmasada yani try bloğunda hata alsakta almasakta bu blok çalışır.
+#     # Genellikle loglama, bağlantı kapatma gibi işler için kullanılır.
+#      pass
+
+
+# x = 5 / 0  # bu kod çalıştığında "ZeroDivisionError: division by zero" hatası raise edilir
+# print(x)
+
+# bu hatayı try-except ile handle edebiliriz
+
+# try:
+#     x = 5 / 0
+#     print(x)
+# except:  # python içerisinde built-in olarak bulunan exception modülü içerisinde bir çok hata türü bulunmaktadır. şayet except bloğund aspesifik bir hata belirtmezsek exception modülünde ki tüm hatalara bakar.
+#     print("Bir tam sayı sıfıra bölünemez..!")
+
+# try-except bloğu sayesinde uygulama exception raise etmeyecek.
+
+# try:
+#     number_list = [23, 45, 56]
+#     print(number_list[5])
+# except IndexError as err: # burada spesifik bir hataya bakılmasını istedik. şayet farklı bir exception gelirse örnğin value error buradaki except bloğu tetiklenmez.
+#     print(err)
+
+# region Division-Operation Handling
+# ℹ️ Not:
+# - `try` içinde hata alabilecek kodlar bulunur.
+# - `except (ZeroDivisionError, ValueError)` ile birden fazla hata tipi yakalanabilir.
+# - `finally` bloğu hata olsa da olmasa da **daima** çalışır.
+#
 # try:
 #     bolunen = int(input('Bolunen: '))
 #     bolen = int(input('Bolen: '))
@@ -482,9 +557,14 @@ else:
 # endregion
 
 
-# Bazı durumlarda bilerek Exception kendimiz raise ederiz
+# Bazı durumlarda bilerek Exception kendimiz raise ederiz.
 
-# region Example 17
+
+# region Raise Custom Error 
+# 💡 Not:
+# - `raise` anahtar kelimesi ile kendi hatamızı fırlatabiliriz.
+# - Bu, özellikle validation (doğrulama) işlemlerinde sıkça kullanılır.
+#
 # try:
 #     mail_address = input('Type mail address: ')
 #
