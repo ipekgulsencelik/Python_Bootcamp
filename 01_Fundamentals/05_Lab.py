@@ -604,30 +604,119 @@
 
 
 # region Labwork
-users = [
-    ['beast', '123'],
-    ['bear', '987'],
-    ['keko', '567'],
-]
-
-products = [
-    ["Laptop", 850],
-    ["Smartphone", 499],
-    ["Headphones", 79],
-    ["Keyboard", 45],
-    ["Monitor", 220],
-    ["Mouse", 25],
-    ["Smartwatch", 150],
-    ["Tablet", 310],
-    ["External Hard Drive", 95],
-    ["Webcam", 60],
-    ["Laptop", 856],
-]
-
 # kullanıcı login olacak
 # register olsun
 # bütün ürünlerin toplam fiyatı nedir
 # ürün adı laptop olan ürünlerin fiyatlarını toplayalım
 # kullanıcı ürün search 
 # fiyatı 200 TL altında olan ürünler listelensin
-#endregion
+
+# users = [
+#     ['beast', '123'],
+#     ['bear', '987'],
+#     ['keko', '567'],
+# ]
+
+# products = [
+#     ["Laptop", 850],
+#     ["Smartphone", 499],
+#     ["Headphones", 79],
+#     ["Keyboard", 45],
+#     ["Monitor", 220],
+#     ["Mouse", 25],
+#     ["Smartwatch", 150],
+#     ["Tablet", 310],
+#     ["External Hard Drive", 95],
+#     ["Webcam", 60],
+#     ["Laptop", 856],
+# ]
+
+# while True:
+#     first_process = input('Sign In --> 1\nSign Up -- 2\nTuşlayınız: ')
+    
+#     match first_process:
+#         case '1':
+#             kullanici_adi = input('User Name: ')
+#             sifre = input('Password: ')
+            
+#             is_success = False
+#             for user in users:
+#                 if user[0] == kullanici_adi and user[1] == sifre:
+#                     is_success = True
+#                     break
+            
+#             if is_success:
+#                 print(f'Giriş başarılı..!\nHoşgeldiniz, {kullanici_adi}')
+#                 while True:
+#                     second_process = input('İşlem Adı Giriniz: ')
+                    
+#                     match second_process:
+#                         case 'toplam fiyat':
+#                             total = 0
+#                             for product in products:
+#                                 total += product[1]
+#                             print(f'Toplam Fiyatlar: {total}')
+#                         case 'laptop toplam fiyat':
+#                             total = 0
+#                             for product in products:
+#                                 if product[0] == 'Laptop':
+#                                     total += product[1]
+#                             print(f'Toplam Fiyatlar: {total}')
+#                         case 'ürün ara':
+#                             urun_adi = input('Ürün adı giriniz: ')
+#                             for product in products:
+#                                 if product[0] == urun_adi:
+#                                     print(f'Ürün Adı: {product[0]}\nFiyatı: {product[1]}')
+#                             else:
+#                                 print('Aradığınız ürün bulunmamaktadır..!')
+#                         case 'fiyat aralığına göre ara':
+#                             alt = int(input('Alt limit fiyato: '))
+#                             ust = int(input('Üst limit fiyato: '))
+#                             for product in products:
+#                                 if product[1] >= alt and product[1] <= ust:
+#                                     print(f'Ürün Adı: {product[0]}\nFiyatı: {product[1]}')
+#                         case 'çıkış':
+#                             print('Uygulama kapatılıyor...!')
+#                             break
+#                         case _:
+#                             print('Lütfen doğru işlem türü giriniz..!')
+#             else:
+#                 print('Kullanıcı adı yada şifre hatalı..!')
+#         case '2':
+#             kullanici_adi = input('User Name: ')
+#             sifre = input('Password: ')
+
+#             is_exist = False
+#             for user in users:
+#                 if user[0] == kullanici_adi:
+#                     is_exist = True
+#                     break
+
+#             if is_exist:
+#                 print('Kullanıcı adı zaten var.')
+#             else:
+#                 new_user = [kullanici_adi, sifre]
+#                 users.append(new_user)
+#                 print('Üyelik işleminiz tamamlandı.')
+#         case _:
+#             print('Lütfen uygun işlem numarasını giriniz..!')
+# endregion
+
+# region enumerate() Example
+# enumerate() fonksiyonu, bir liste üzerinde dönerken
+# hem index'i hem de liste elemanını aynı anda almamızı sağlar.
+# Örneğin:
+#   boxers[0] → 'Mike Tyson'
+#   boxers[1] → 'Muhammed Ali'
+# fakat enumerate ile aynı anda şu şekilde çekebiliriz:
+#   index, item = 0, 'Mike Tyson'
+
+# boxers = ['Mike Tyson', 'Muhammed Ali', 'Lenox Lewix', 'Evender Holyfiled', 'George Foreman']
+
+# enumerate(boxers) → (index, item) döner
+# for index, item in enumerate(boxers):
+#     print(
+#         f'Index Value: {index}\n'
+#         f'Item Value: {item}'
+#     )
+# endregion
