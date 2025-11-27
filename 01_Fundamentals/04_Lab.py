@@ -194,3 +194,16 @@
 #         print(f'Bilemediniz..!\nKalan hakkınız: {hak}')
 #     hak -= 1
 # endregion
+
+
+# region Example 11
+# Kullanıcıdan full adı alınacak. Örneğin Burak Yılmaz
+# 3 ve üzeri tam ad olma durumunu göz önünde bulundurun. 
+# Bu senaryoda ilk isim ve soy isim kullanılsın.
+# burak.yilmaz@bilgeadam.com
+#
+# full_name = input("Please type into full name: ").lower()
+# splited_full_name_list = full_name.split(" ")
+# mail_address = f'{splited_full_name_list[0]}.{splited_full_name_list[-1]}@bilgeadam.com'
+# print(mail_address)
+# endregion
