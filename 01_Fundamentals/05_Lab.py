@@ -22,6 +22,7 @@
 
 # region Sample
 # futbol_takimlari = ['Galatasaray', 'Beşiktaş']
+
 # Bu liste içerisine uygulama run time'da iken 2 yeni takım daha eklenilsin
 # futbol_takimlari.append('Fenerbahçe')
 # futbol_takimlari.append('Trabzonspor')
@@ -62,7 +63,7 @@
 # endregion
 
 
-# region Example 1
+# region Append Numbers
 # sayilar = []  # burada içi boş bir liste tanımladık
 # for i in range(1, 10):
 #     sayilar.append(i)  # append() fonksiyonu ilgili listeye her bir adımda i sayacının üzerinde tutuğu değeri eklemeye yaradı.
@@ -72,7 +73,7 @@
 # endregion
 
 
-# region Example 2
+# region Squares of Numbers
 # rakamların karesini hesaplayarak bir listeye dolduralım
 # rakamlar = []
 # for i in range(1, 10):
@@ -83,7 +84,7 @@
 # endregion
 
 
-# region Example 3
+# region Squares of Multiples of 3
 # 50 - 100 arasında 3'e tam bölünen sayıların karesini alarak bir listeye ekleyelim
 # sayilar = []
 # for i in range(50, 101):
@@ -104,7 +105,7 @@
 # endregion
 
 
-# region Add New Item Specific Index
+# region Add New Item at User-Defined Index
 # Kullanıcıdan yeni bir boksör ismi alıyoruz
 # boxer_name = input('Boxer Name: ')
 
@@ -129,14 +130,14 @@
 # endregion
 
 
-# region Read An Item
+# region Read Item by Index
 # Boxers listesinin 2. indexinde bulunan veriyi ekrana basıyoruz
 # Dikkat: Index 0'dan başlar, yani 2. index listedeki 3. elemandır.
 # print(boxers[2])
 # endregion
 
 
-# region Update Item
+# region Update Item by Index
 # 5. index'te bulunan elemanı "Joe Frazeir" ile değiştiriyoruz
 # Liste üzerinde doğrudan atama (assignment) yaparak güncelleme yapılır.
 # boxers[5] = 'Joe Frazier'
@@ -144,7 +145,7 @@
 # endregion
 
 
-# region Remove Item By Index - 1
+# region Remove Item By Index (pop-0)
 # pop(index) → Belirtilen index'teki elemanı siler.
 # 0. index elemanını silelim
 # boxers.pop(0)
@@ -152,7 +153,7 @@
 # endregion
 
 
-# region Remove Item by Index - 2
+# region Remove Item By Index (pop-4)
 # pop(index) → Verilen index'teki elemanı siler.
 # Eğer index verilmezse listenin son elemanını siler.
 # Örnek: 4. index'teki elemanı silme
@@ -161,7 +162,7 @@
 # endregion
 
 
-# region Remove Item by Value
+# region Remove Item By Value (Evander Holyfield)
 # remove() → Listeden silinecek ELEMANIN DEĞERİNİ veririz.
 # İlk eşleşen elemanı bulup siler.
 # Eğer listede yoksa hata verir.
@@ -171,7 +172,7 @@
 # endregion
 
 
-# region Remove Item By Itself
+# region Remove Item By Value (Lennox Lewis)
 # remove(value) → Değerin kendisini vererek silme işlemi yapılır.
 # 'Lennox Lewis' değerini listeden silelim
 # boxers.remove('Lennox Lewis')
@@ -182,14 +183,14 @@
 # clear() => fonksiyonu listenin alayını temizler.
 
 
-# region Loop Over List (for each)
+# region Loop Over List (for-each)
 # Listedeki her elemanı tek tek gezer ve yazdırır
 # for boxer in boxers:
 #     print(boxer)
 # endregion
 
 
-# region Loop Over List (for each) - Example 
+# region Loop Over List (for-each Movies)
 # movie_list = ['Fight Club', 'Matrix', 'Interstellar', 'Inception', 'Fringe']
 #
 # for movie in movie_list:
@@ -211,7 +212,7 @@
 # endregion
 
 
-# region Loop with Index (range + len) - Example
+# region Loop with Index (Movies) 
 # length_movie_list = len(movie_list)
 # for i in range(length_movie_list):
 #     print(movie_list[i])
@@ -261,7 +262,7 @@
 # endregion
 
 
-# region Example 4
+# region Remove Spaces from String to List
 # Kullanıcıdan bir söz öbeği alalım. Boşluk olmayacak şekilde karakter karakter ekrana yazdıralım.
 # word = input("Enter a word: ")
 # lst = []
@@ -286,11 +287,10 @@
 # Python programlama dilinde for hem sayaç (index) hem de iterable (foreach) mantığı ile çalışabilir.
 # Yukarı da saydığımız programlama dillerinde iterable mantığını yürütmek için 
 # bir başka döngü tipi olan foreach kullanılmaktadır.
-
 # endregion
 
 
-# region Example - 5
+# region Unique Characters from Phrase
 # Kullanıcıdan alınan söz öbeğini harf harf bir liste içerisine kayıt edin.
 # Boşluk karakterinin listeye eklenmesini istemiyoruz.
 # word = input("Say something... : ")
@@ -308,7 +308,7 @@
 # endregion
 
 
-# region Example - 6
+# region Vowels and Digits in Sentence
 # Kullanıcıdan alınan söz öbeğindeki sesli harfleri bir listeye dolduralım
 # sesli_harfler = ['a', 'e', 'ı', 'i', 'o', 'ö', 'u', 'ü']
 # yakalanan_sesli_harfler = []
@@ -367,7 +367,7 @@
 # endregion
 
 
-# region Example - 7
+# region Random Lists with Index-Based Sum
 # lst_1 ve lst_2 içerisine rastgele 10 sayı üretip doldurun
 # Doldurma işlemini INDEX mantığına göre yapın
 # Örneğin: lst_1[0] + lst_2[0] = lst_3[0]
@@ -396,7 +396,7 @@
 #endregion
 
 
-# region Example - 8
+# region Random Numbers Even/Odd Count
 # Bir liste içerisinde kullanıcının belirlediği kadar random sayı ile dolduralım
 # Üretilecek sayıların aralık bilgisini kullanıcıdan alalım.
 # Bu üretilen sayılardan kaç tanesi çift kaç tanesi tek bulup ekrana yazdıralım.
@@ -476,7 +476,7 @@
 # endregion
 
 
-# region Unpacking - Unboxing
+# region Unpacking - Unboxing Nested Lists
 # İç içe listeler: [İsim, Yaş, Meslek]
 # my_family = [
 #     ['Burak Yılmaz', 36, 'Developer'],
@@ -549,7 +549,7 @@
 # endregion
 
 
-# region Example Password Validation with Error
+# region Example Password Validation with Error Messages
 # Sign in olurken kullanıcının şifresini kontrol edelim.
 # Şifre en az 16 karakterli olacak.
 # Noktalama işareti içerecek. Python'da hazır yapısı var.
@@ -603,7 +603,7 @@
 # endregion
 
 
-# region Labwork
+# region Login & Product Operations
 # kullanıcı login olacak
 # register olsun
 # bütün ürünlerin toplam fiyatı nedir
@@ -667,7 +667,9 @@
 #                             for product in products:
 #                                 if product[0] == urun_adi:
 #                                     print(f'Ürün Adı: {product[0]}\nFiyatı: {product[1]}')
+#                                     break
 #                             else:
+#                                 # for hiç break görmeden biterse çalışır
 #                                 print('Aradığınız ürün bulunmamaktadır..!')
 #                         case 'fiyat aralığına göre ara':
 #                             alt = int(input('Alt limit fiyato: '))
