@@ -7,7 +7,7 @@
 ![Hard](https://img.shields.io/badge/Hard-0-red?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 
-![Progress](https://progress-bar.dev/10/?title=Solved&width=400)
+![Progress](https://progress-bar.xyz/10)
 
 # 🧠 LeetCode Solutions
 
