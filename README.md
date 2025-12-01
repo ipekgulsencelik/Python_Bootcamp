@@ -1,2 +1,94 @@
 # Python_Bootcamp
  Data Science &amp; Ai Development
+
+![Solved](https://img.shields.io/badge/Solved-1-blue?style=for-the-badge)
+![Easy](https://img.shields.io/badge/Easy-1-brightgreen?style=flat-square)
+![Medium](https://img.shields.io/badge/Medium-0-yellow?style=flat-square)
+![Hard](https://img.shields.io/badge/Hard-0-red?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
+
+![Progress](https://progress-bar.dev/1/?title=Solved&width=400)
+
+# 🧠 LeetCode Solutions
+
+This repository contains my solutions to LeetCode problems in **Python**.  
+Each solution includes:
+- Clean and optimal implementation  
+- Time & space complexity  
+- Problem ID in file name  
+- Easy-to-read folder structure 
+
+---
+
+## 📂 Folder Structure
+
+```
+LeetCode/
+│
+├── Arrays/
+├── Strings/
+├── BinaryTree/
+└── DynamicProgramming/ 
+```
+
+---
+
+## 🚀 Progress
+
+| Difficulty | Solved |
+|-----------|--------|
+| Easy      | 1      |
+| Medium    | 0      |
+| Hard      | 0      |
+
+(Progress updates manually as new problems are added.)
+
+---
+
+## ▶️ How to Use
+
+1. Navigate to a topic folder (Arrays / Strings / Trees / DP…)
+2. Open the file named with its LeetCode problem ID  
+   Example: 0058-length-of-last-word.py
+3. Copy the code into LeetCode and run it.
+4. All solutions follow optimal or near-optimal approaches.
+
+---
+
+## 🎯 Naming Convention
+
+All solution files follow the naming pattern:
+
+```
+<problemID>-<short-name>.py
+```
+
+Examples:
+```
+0058-length-of-last-word.py
+0027-remove-element.py
+0001-two-sum.py
+```
+
+---
+
+## 💡 Why This Repo?
+
+✔ Clean structure  
+✔ Easy navigation  
+✔ Interview-friendly  
+✔ Perfect for tracking your progress  
+✔ Professional formatting  
+✔ Organized by difficulty & category  
+
+---
+
+## 🛠 Languages Included
+
+- Python (primary)
+
+More languages may be added later.
+
+---
+
+Happy Coding! 🚀
