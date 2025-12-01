@@ -720,3 +720,260 @@
 #         f'Item Value: {item}'
 #     )
 # endregion
+
+#! List Comprehensions
+# List Comprehension, uzun döngüler yazmadan hızlıca liste üretmenin en Pythonic yoludur.
+# Daha Pythonic - daha hızlı - daha temiz kod sağlar.
+
+# ⭐ Neden Önemli?
+# ✔ Daha kısa kod                    → daha az hata ihtimali
+# ✔ Daha hızlı çalışır               → optimize edilmiş yapı
+# ✔ Okunabilirliği artırır           → tek satırda açık mantık
+# ✔ Transform işlemleri için ideal   → veri dönüştürme
+# ✔ Filtreleme yapabilir             → if eklenebilir
+# ✔ Veri üretimi/parsing için mükemmel
+
+# Python projelerinde özellikle:
+# - API verilerini dönüştürürken
+# - büyük listeleri işlerken
+# - filtreleme yaparken
+# - nested list (matris) oluştururken
+# çok tercih edilir.
+
+# 📌 TEMEL YAPI:
+#     [ yeni_deger for eleman in liste if kosul ]
+
+# region Number Generator
+# 0–9 arasındaki sayıları bir listeye ekleyiniz.
+# range(10) → 0'dan 9'a kadar sayıları üretir.
+
+# List Comprehension — Pythonic Yöntem
+# lst = [i for i in range(10)]
+# print("List Comprehension:", lst)
+
+# ✔️ Klasik yöntem (döngü + append)
+# lst_1 = []
+# for i in range(10):
+#     lst_1.append(i)
+
+# print("Klasik Yöntem:", lst_1)
+# endregion
+
+
+# region Random Number Generator
+# 0 ile 100 arasında rastgele üretilmiş 10 adet tam sayıdan oluşan bir liste oluşturunuz.
+
+# Bilgi:
+#   randint(a, b) → a ve b DAHİL olmak üzere rastgele tam sayı üretir.
+#   range(10)     → 10 tekrar oluşturur (0–9)
+
+# from random import randint
+
+# Klasik yöntem (döngü + append)
+# lst = []                    
+
+# for _ in range(10):          # '_' → değer kullanmadığımız yerlerde tercih edilir
+#     random_number = randint(0, 100)   # 0–100 arasında rastgele sayı üret
+#     lst.append(random_number)         # sayıyı listeye ekle
+
+# print("Döngü ile üretilen liste: ", lst)
+
+# List Comprehension (Tek satırda üretim)
+# random_list = [randint(0, 100) for _ in range(10)]
+# print("List Comprehension ile üretilen liste: ", random_list)
+
+# print([randint(0, 100) for _ in range(10)])
+# endregion
+
+
+# region  Squared Numbers
+# 0–9 arasındaki sayıların karesini hesaplayıp bir listeye ekleyiniz.
+
+# Bilgi:
+#   i ** 2     → i sayısının karesi
+
+# print([i ** 2 for i in range(10)])
+# endregion
+
+
+# region Even Numbers — 0 to 100
+# 0–100 arasındaki ÇİFT sayıları listeye ekleyiniz.
+
+# Bilgi:
+#   i % 2 == 0  → sayının çift olup olmadığını kontrol eder.
+#   range(0, 101) → 0'dan 100'e kadar tüm sayıları üretir.
+
+even_numbers = [i for i in range(0, 101) if i % 2 == 0]
+print(even_numbers)
+# endregion
+
+
+# region Fruit List — Filtering Fruits Containing 'a'
+
+# fruits = [
+#     "Apple", "Banana", "Orange", "Mango", "Pineapple",
+#     "Strawberry", "Grapes", "Watermelon", "Peach", "Cherry",
+#     "Papaya", "Kiwi", "Blueberry", "Raspberry", "Guava",
+#     "Pomegranate", "Lemon", "Apricot", "Fig", "Pear"
+# ]
+
+# print(fruits)
+
+# İçinde 'a' harfi geçen meyveleri filtreleyiniz.
+
+# ✔ List Comprehension ile çözüm
+# print([fruit for fruit in fruits if 'a' in fruit.lower()])
+
+# Aynı işlemin klasik döngü ile yapılmış hali
+
+# lst = []   # filtrelenen meyveler bu listeye eklenecek
+
+# for fruit in fruits:
+#     if 'a' in fruit.lower():
+#         lst.append(fruit)
+
+# print(lst)
+# endregion
+
+
+# region Fruit Check — Contains "an"
+# Meyve ismi içinde "an" geçiyorsa True, geçmiyorsa False
+
+# Ternary (koşullu ifade) yapısı:
+#   True if koşul else False
+
+# Örnek:
+#   'adult' if age >= 18 else 'child'
+
+# print([True if 'an' in fruit.lower() else False for fruit in fruits])
+# endregion
+
+
+# region Multiplication Table — 1 to 10
+# 1–10 arasındaki sayıların çarpım tablosunu oluşturunuz.
+
+# Bilgi:
+#   Nested loop (iç içe döngü) kullanılır:
+#       i → dış döngü (1'den 10'a kadar)
+#       j → iç döngü (1'den 10'a kadar)
+#   Her j döngüsünde i × j hesaplanır ve yazdırılır.
+
+# Classic Approach — Nested Loops
+# for i in range(1, 11):
+#     for j in range(1, 11):
+#         print(f'{i} x {j} = {i * j}')
+#     print('=========================')
+
+# List Comprehension Approach — 10×10 Table
+# table = [[f"{i} x {j} = {i * j}" for j in range(1, 11)] for i in range(1, 11)]
+# for row in table:
+#     print(*row, sep="\t")
+# endregion
+
+
+# region Lambda Function — Introduction
+# Lambda Nedir?
+#   İsimsiz, tek satırlık fonksiyon yazma yöntemidir.
+#   Fonksiyon tanımı (def) yazmadan hızlıca işlem yapmayı sağlar.
+#
+# Neden Önemlidir?
+# ---------------------------------------------------------
+# ✔ map(), filter(), sorted() gibi fonksiyonlarla sık kullanılır
+# ✔ Gereksiz fonksiyon tanımlamayı ortadan kaldırır
+# ✔ Kodun sade ve temiz görünmesini sağlar
+# ✔ Inline (satır içi) kullanım için idealdir
+# ✔ Matematiksel işlemlerde çok pratiktir
+
+# Basit bir lambda fonksiyonu — kare alma
+# square = lambda x: x * x
+# print(square(5))   # 25
+
+# Lambda ile iki sayıyı toplama
+# sum_two = lambda a, b: a + b
+# print(sum_two(3, 7))  # 10
+
+# Metin dönüştürme — lambdada string işlemleri
+# add_text = lambda t: t.upper() + "!"
+# print(add_text("hello"))  # HELLO!
+# endregion
+
+
+#! Filter
+# Belirli koşulu sağlayan elemanları döndürür.
+# Arama, filtreleme, validasyon gibi işlemler için idealdir.
+
+# ⭐ Neden Önemli?
+# ✔ Veri filtreleme (ör: pozitif sayıları seçmek)
+# ✔ Fiyat filtreleme (ör: 200 TL altındakileri listelemek)
+# ✔ Kullanıcı doğrulama (ör: e-posta formatı doğru mu?)
+# ✔ Temiz veri oluşturma
+# ✔ Hatalı veriyi ayırma
+# ✔ Büyük veri setlerinde performanslı filtreleme
+# ✔ Koşula bağlı veri seçimi
+
+# Temel Formül:
+#     filter(kosul_fonksiyonu, liste)
+
+# Açıklama:
+#   - filter() → Koşulu sağlayan elemanları döndürür.
+#   - Sonuç bir "iterator" olduğu için genelde list() ile çevrilir.
+
+
+# region Filter Function — Basic Sample
+# Verilen numbers listesinden 20'den küçük olan sayıları filtreleyiniz.
+
+# filter() çıktısı bir iterator olduğundan list() ile listeye çevrilir.
+
+# numbers = [10, 15, 20, 25, 30]
+
+# filtered = list(filter(lambda x: x < 20, numbers))
+# print(filtered)   # [10, 15]
+# endregion
+
+
+# region Random Number Generation — Fill List With Numbers
+# 1000 adet rastgele sayı üretetiniz.
+# a = -100  → minimum değer
+# b =  100  → maksimum değer
+# randint(a, b) → a ve b dahil olmak üzere rastgele tam sayı üretir.
+
+# list comprehension ile hızlıca 1000 elemanlı liste üretiyoruz.
+
+# from random import randint
+
+# numbers = [randint(a=-100, b=100) for i in range(1000)]
+# print("Tüm Sayılar:", numbers)
+
+# Yukarıda oluşturulan liste içerisinden sadece POZİTİF (0'dan büyük) olanları listeleyelim.
+
+# Path I → List Comprehension
+# Şartlı list comprehension:
+
+# positive_numbers = [number for number in numbers if number > 0]
+# print("Pozitif Sayılar (List Comprehension):", positive_numbers)
+
+# Path II → filter() fonksiyonu
+
+# filter(function, iterable)
+#    → function True döndürürse eleman listeye alınır.
+
+# lambda x: x > 0  → pozitif sayıları seçer
+# filter sonucu 'iterator' döner, listeye çevirmek gerekir.
+
+# temp_lst = filter(lambda x: x > 0, numbers)
+# positive_numbers = list(temp_lst)
+# print("Pozitif Sayılar (filter):", positive_numbers)
+# endregion
+
+
+# region Filter Function — Extract Even Numbers
+# filter() fonksiyonu ile çift sayıları filtreleyerek sonucu liste olarak ekrana yazdırınız.
+
+#   - filter sonucu bir iterator olduğu için list() ile listeye çeviriyoruz
+
+# print(
+#      list(
+#       filter(lambda x: x % 2 == 0, numbers)
+#      )
+# )
+# endregion
