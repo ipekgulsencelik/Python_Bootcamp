@@ -1,13 +1,13 @@
 # Python_Bootcamp
  Data Science &amp; Ai Development
 
-![Solved](https://img.shields.io/badge/Solved-1-blue?style=for-the-badge)
-![Easy](https://img.shields.io/badge/Easy-1-brightgreen?style=flat-square)
+![Solved](https://img.shields.io/badge/Solved-10-blue?style=for-the-badge)
+![Easy](https://img.shields.io/badge/Easy-10-brightgreen?style=flat-square)
 ![Medium](https://img.shields.io/badge/Medium-0-yellow?style=flat-square)
 ![Hard](https://img.shields.io/badge/Hard-0-red?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 
-![Progress](https://progress-bar.dev/1/?title=Solved&width=400)
+![Progress](https://progress-bar.dev/10/?title=Solved&width=400)
 
 # 🧠 LeetCode Solutions
 
@@ -27,6 +27,7 @@ LeetCode/
 │
 ├── Arrays/
 ├── Strings/
+├── Math/
 ├── BinaryTree/
 └── DynamicProgramming/ 
 ```
@@ -37,11 +38,25 @@ LeetCode/
 
 | Difficulty | Solved |
 |-----------|--------|
-| Easy      | 1      |
+| Easy      | 10     |
 | Medium    | 0      |
 | Hard      | 0      |
 
 (Progress updates manually as new problems are added.)
+
+---
+
+## 🔍 Solved Problems
+
+You can view all solved problems inside their folders:
+
+- **Arrays** → `LeetCode/Arrays/`
+- **Strings** → `LeetCode/Strings/`
+- **Math** → `LeetCode/Math/`
+- **BinaryTree** → `LeetCode/BinaryTree/`
+- **DynamicProgramming** → `LeetCode/DynamicProgramming/`
+
+Problems are automatically organized by LeetCode ID. 
 
 ---
 
@@ -50,8 +65,9 @@ LeetCode/
 1. Navigate to a topic folder (Arrays / Strings / Trees / DP…)
 2. Open the file named with its LeetCode problem ID  
    Example: 0058-length-of-last-word.py
-3. Copy the code into LeetCode and run it.
-4. All solutions follow optimal or near-optimal approaches.
+3. Copy the code into LeetCode and run it  
+4. Review time/space complexity inside the file  
+5. Commit your solution to this repository  
 
 ---
 
