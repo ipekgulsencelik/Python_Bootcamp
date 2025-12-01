@@ -4,6 +4,7 @@
 # List'ler RAM üzerinde tutulduğu için, uygulama çalıştığı sürece üzerine eklenen yeni değerleri tutarlar. 
 # Birden fazla tipte değerleri içerisinde barındırabilirler. 
 # Uygulama kapatıldığında ise ilk yaratıldıkları hale dönerler. 
+#* LİSTELER DEĞİŞTİRİLEBİLİR (MUTABLE) BİR VERİ KOLEKSİYONUDUR
 
 # lst = ['burak', 12, True, 'hakan', 3.14, False]
 
@@ -450,6 +451,16 @@
 # endregion
 
 
+#? Slicing (Dilimleme)
+#* Pandas (veri analizinde de) kullanılır, çok önemli!!!!
+#* Mevcut bir listenin belirli bir bölümünü alarak yeni bir liste oluşturma işlemidir. 
+# Bu dilimleme işlemi orjinal listeyi değiştirmez.
+
+#SYNTAX YAPISI
+#           yeni_liste = eski_liste [başlangıç_index(DAHİL) : bitiş_index(HARİÇ) : adım] 
+#             default değerleri --- [       0 (SIFIR)       :    listenin_sonu   :  1  ]
+
+
 # region Slicing (Dilimleme)
 # -------------------------------
 # Slicing Açıklaması:
@@ -474,6 +485,10 @@
 # print(fruits[::-2])    # sondan başa doğru 2’şer adımla geri gider
 # print(fruits[10::-3])  # 10. index’ten 0’a doğru, 3’er adım ile geri gider
 # endregion
+
+
+#? Unpacking - Unboxing
+#* Bir koleksiyonun öğelerini alıp bu öğeleri ayrı ayrı değişkenlere atanması durumudur.
 
 
 # region Unpacking - Unboxing Nested Lists
@@ -805,8 +820,8 @@
 #   i % 2 == 0  → sayının çift olup olmadığını kontrol eder.
 #   range(0, 101) → 0'dan 100'e kadar tüm sayıları üretir.
 
-even_numbers = [i for i in range(0, 101) if i % 2 == 0]
-print(even_numbers)
+# even_numbers = [i for i in range(0, 101) if i % 2 == 0]
+# print(even_numbers)
 # endregion
 
 
@@ -920,6 +935,9 @@ print(even_numbers)
 #   - filter() → Koşulu sağlayan elemanları döndürür.
 #   - Sonuç bir "iterator" olduğu için genelde list() ile çevrilir.
 
+#* Listeler üzerinde filtrelemeye yarayan fonksiyondur.
+#* Listedeki tüm öğeleri gezer ve koşulu True döndüren öğeleri seçerek yeni bir sonuç dizisi oluşturur.
+#* Filtreleme kuralı basit olduğunda, genellikle yerleşik ve isimsiz Lambda fonksiyonları kullanılır, bu da kodu daha kısa yapar:
 
 # region Filter Function — Basic Sample
 # Verilen numbers listesinden 20'den küçük olan sayıları filtreleyiniz.
