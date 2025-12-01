@@ -1,62 +1,4 @@
 
-# region List Comprehensions
-# List Comprehension, uzun döngüler yazmadan hızlıca liste üretmenin en Pythonic yoludur.
-# Daha Pythonic - daha hızlı - daha temiz kod sağlar.
-
-# ⭐ Neden Önemli?
-# Daha kısa kod
-# Daha az hata
-# Çok daha hızlı çalışır
-# Bir listeyi başka listeye dönüştürme (transform) için birebirdir  
-# Filtreleme → Koşul ekleme yapabilirsin  
-# Veri üretme, parsing, API verisi işleme için çok uygundur  
-# Okunabilirliği artırır
-
-# 📌 TEMEL YAPI:
-#     [ yeni_deger for eleman in liste if kosul ]
-
-# Normal yöntem:
-squares = []
-for i in range(1, 6):
-    squares.append(i * i)
-
-# List comprehension ile:
-squares_lc = [i * i for i in range(1, 6)]
-print("Squares:", squares_lc)   # [1, 4, 9, 16, 25]
-
-# Koşullu kullanım:
-even_numbers = [n for n in range(1, 20) if n % 2 == 0]
-print("Even numbers:", even_numbers)
-# endregion
-
-
-# region lambda function
-# İsimsiz, tek satırlık fonksiyon yazma yöntemidir.
-# Fonksiyon tanımı yazmadan hızlı işlem yapar.
-
-# ⭐ Neden Önemli?
-# map(), filter(), sorted() gibi fonksiyonlarda çok kullanılır  
-# Gereksiz fonksiyon tanımlamayı ortadan kaldırır  
-# Kodun temiz görünmesini sağlar  
-# Inline (satır içi) kullanım için idealdir  
-# Matematiksel işlemlerde pratiklik sağlar
-
-square = lambda x: x * x
-print(square(5))   # 25
-
-sum_two = lambda a, b: a + b
-print(sum_two(3, 7))  # 10
-
-# Sıralama için lambda kullanımı:
-students = [('Ali', 50), ('Ayşe', 80), ('Mehmet', 60)]
-students_sorted = sorted(students, key=lambda x: x[1])
-print(students_sorted)
-
-add_text = lambda t: t.upper() + "!"
-print(add_text("hello"))
-# endregion
-
-
 # region zip()
 # Birden fazla listeyi eleman eleman birleştirir.
 # Çoklu veriyi tek yapıda tutmak için mükemmeldir.
@@ -100,34 +42,6 @@ print(results)   # [1, 4, 9, 16, 25]
 str_nums = ['1', '2', '3']
 int_nums = list(map(int, str_nums))
 print(int_nums)
-# endregion
-
-
-# region filter()
-# Belirli koşulu sağlayan elemanları döndürür.
-# Arama, filtreleme, validasyon gibi işlemler için idealdir.
-
-# ⭐ Neden Önemli?
-# Veri filtreleri
-# Fiyat filtreleme
-# Kullanıcı doğrulama
-# Temiz veri oluşturma
-# Hatalı veriyi ayırmak 
-# Büyük veride performansı iyidir  
-# Koşul bazlı veri çekme sağlar  
-
-# Formül:
-#     filter(kosul_fonksiyonu, liste)
-
-numbers = [10, 15, 20, 25, 30]
-
-# 20’den küçük olanlar
-filtered = list(filter(lambda x: x < 20, numbers))
-print(filtered)  # [10, 15]
-
-# sadece çiftler
-evens = list(filter(lambda x: x % 2 == 0, numbers))
-print(evens)
 # endregion
 
 
