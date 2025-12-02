@@ -1,13 +1,13 @@
 # Python_Bootcamp
  Data Science &amp; Ai Development
 
-![Solved](https://img.shields.io/badge/Solved-10-blue?style=for-the-badge)
-![Easy](https://img.shields.io/badge/Easy-10-brightgreen?style=flat-square)
+![Solved](https://img.shields.io/badge/Solved-11-blue?style=for-the-badge)
+![Easy](https://img.shields.io/badge/Easy-11-brightgreen?style=flat-square)
 ![Medium](https://img.shields.io/badge/Medium-0-yellow?style=flat-square)
 ![Hard](https://img.shields.io/badge/Hard-0-red?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 
-![Progress](https://progress-bar.xyz/10)
+![Progress](https://progress-bar.xyz/11)
 
 # 🧠 LeetCode Solutions
 
@@ -38,7 +38,7 @@ LeetCode/
 
 | Difficulty | Solved |
 |-----------|--------|
-| Easy      | 10     |
+| Easy      | 11     |
 | Medium    | 0      |
 | Hard      | 0      |
 
