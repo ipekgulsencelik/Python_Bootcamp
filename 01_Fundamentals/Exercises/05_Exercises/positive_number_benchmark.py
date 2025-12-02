@@ -9,9 +9,9 @@
 #
 # Her yöntemde:
 #   → Çalışma süresini (time cost)
+#   → CPU süresini   (CPU time cost)
 #   → Bellek kullanımını (memory cost)
 # ölçeceğiz ve rapor olarak ekrana yazacağız.
-#
 # ===============================================================
 # NEDEN BÖYLE BİR KARŞILAŞTIRMA?
 # ---------------------------------------------------------------
@@ -29,7 +29,7 @@
 
 # region Importlar (Zorunlu Kütüphaneler)
 import random       # rastgele sayı üretmek için
-import time         # zaman ölçümü için
+import time         # zaman ve CPU süresi ölçümü için
 import tracemalloc  # bellek (RAM) kullanımı ölçümü için
 # endregion
 
@@ -51,7 +51,6 @@ NUMBERS = [random.randint(-5000, 5000) for _ in range(100_000)]
 # endregion
 
 
-
 # ===============================================================
 #           Big-O ANALİZİ (ZAMAN & BELLEK KARMASIKLIĞI)
 # ===============================================================
@@ -70,13 +69,14 @@ NUMBERS = [random.randint(-5000, 5000) for _ in range(100_000)]
 # ===============================================================
 
 
-
 # ===============================================================
 #                 YARDIMCI FONKSİYON: measure_performance
 # ===============================================================
 # Bu fonksiyon her yöntemin:
 #   - Başlama zamanını
 #   - Bitiş zamanını
+#   - Geçen zamanı   (wall-clock time)
+#   - CPU süresini   (process CPU time)
 #   - Bellek kullanımını
 # ölçüp rapor olarak bastırır.
 # 
@@ -86,6 +86,19 @@ NUMBERS = [random.randint(-5000, 5000) for _ in range(100_000)]
 # time.time() → sistem saatine bağlıdır, hassasiyeti düşüktür.
 # time.perf_counter() → yüksek çözünürlüklü sayaçtır.
 # Mikro benchmark'lar için perf_counter kullanmak daha doğrudur.
+#
+# ------------------------------------------------------------
+# CPU TIME (time.process_time)
+# ------------------------------------------------------------
+# time.process_time():
+#   • Sadece bu Python sürecinin CPU üzerinde geçirdiği süreyi ölçer.
+#   • Uyku, bekleme, I/O gibi zamanlar dahil DEĞİLDİR.
+#   • Yani "gerçek çalışılan CPU süresi"ni gösterir.
+#
+# CPU Time ile Wall Time arasındaki fark:
+#   • Wall Time (Time Cost): Kullanıcının kronometre ile gördüğü süre.
+#   • CPU Time (CPU Time)  : İşlemci çekirdeğinin gerçekten bu işi
+#                            kaç saniye hesapladığı.
 #
 # ------------------------------------------------------------
 # MEMORY COST AÇIKLAMASI
@@ -124,28 +137,34 @@ def measure_performance(func, description):
     # Bellek takibi başlat
     tracemalloc.start()
 
-    # Zamanı kaydet (başlangıç)
-    start = time.perf_counter()
+    # Zaman sayaçlarını başlat
+    start_wall = time.perf_counter()      # dışarıdan bakınca geçen süre
+    start_cpu = time.process_time()       # sadece CPU'da geçen süre
 
     # Fonksiyonu çalıştır
     result = func()
 
-    # Zamanı kaydet (bitiş)
-    end = time.perf_counter()
+    # Sayaçları durdur
+    end_wall = time.perf_counter()
+    end_cpu = time.process_time()
 
     # Bellek bilgilerini al
     current, peak = tracemalloc.get_traced_memory()
 
     tracemalloc.stop()
 
+    # Hesaplamalar
+    wall_time = end_wall - start_wall       # toplam geçen süre
+    cpu_time = end_cpu - start_cpu          # CPU üzerinde harcanan süre (I/O hariç)
+
     # Sonuçları ekrana yazdır
-    print(f"   ⏱  Time Cost     : {end - start:.6f} saniye")    # bitiş zamanı – başlangıç zamanı = geçen süre (saniye)
+    print(f"   ⏱  Time Cost     : {wall_time:.6f} saniye (gerçek geçen süre)")    # bitiş zamanı – başlangıç zamanı = geçen süre (saniye)
+    print(f"   🖥  CPU Time      : {cpu_time:.6f} saniye (sadece CPU süresi)")
     print(f"   🧠 Memory Current: {current / 1024:.2f} KB")     # O anki RAM kullanımı
     print(f"   📈 Memory Peak   : {peak / 1024:.2f} KB")        # En yüksek RAM kullanımı
     print(f"   📌 Sonuç uzunluğu: {len(result)}\n")
 
     return result
-
 
 
 # ===============================================================
@@ -167,7 +186,6 @@ def path_list_comprehension():
 # endregion
 
 
-
 # ===============================================================
 #                PATH II → filter() + lambda
 # ===============================================================
@@ -176,8 +194,7 @@ def path_list_comprehension():
 #
 # filter() FARKI:
 #   • Filtreleme C seviyesinde yapılır → hızlıdır
-#   • Ancak lambda bir Python objesi olduğundan
-#     biraz overhead ekler
+#   • Ancak lambda bir Python objesi olduğundan biraz overhead ekler
 # ===============================================================
 
 # region PATH II → filter()
@@ -208,7 +225,6 @@ def path_for_loop():
             positives.append(n)
     return positives
 # endregion
-
 
 
 
@@ -253,8 +269,13 @@ print("✔ Benchmark tamamlandı.")
 # ✔ Orta seviye → filter()
 # ✔ En yavaş → Klasik For Loop
 #
-# ✔ Bellek kullanımı farkları küçük olsa da
-#   zaman farkı belirgindir.
+# ✔ Bellek kullanımı farkları küçük olsa da zaman farkı belirgindir.
+#
+# ✔ CPU Time ile Time Cost arasında fark varsa:
+#     - I/O beklemeleri
+#     - interpreter overhead
+#     - işletim sistemi scheduler farkları
+#   buna sebep olur.
 #
 # ✔ Gerçek projelerde:
 #     Performans + okunabilirlik için LC en iyi tercihtir.
