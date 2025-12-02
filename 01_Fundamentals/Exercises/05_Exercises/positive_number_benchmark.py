@@ -265,17 +265,43 @@ print("✔ Benchmark tamamlandı.")
 # ===============================================================
 #                     ÖZET
 # ===============================================================
-# ✔ En hızlı yöntem → List Comprehension
-# ✔ Orta seviye → filter()
-# ✔ En yavaş → Klasik For Loop
+# ✔ Zaman Performansı (En hızlı → En yavaş)
+#   - En hızlı yöntem → List Comprehension
+#   - Orta seviye → Klasik For Loop - LC’den yaklaşık 5 kat daha yavaş.
+#   - En yavaş → filter() - Lambda nedeniyle Python seviyesinde ekstra maliyet oluşuyor.
 #
-# ✔ Bellek kullanımı farkları küçük olsa da zaman farkı belirgindir.
+# ✔ CPU Kullanımı (En verimli → En az verimli)
+#     1) List Comprehension
+#          - İşlemlerin büyük kısmı CPython’ın C seviyesinde gerçekleştirildiği için Python CPU zamanına yansımaz.
+#     2) For Loop
+#          - Her append() bir Python fonksiyon çağrısı olduğundan CPU tüketimi orta seviyededir.
+#     3) filter() + lambda
+#          - lambda fonksiyonları Python seviyesinde çalıştığı için en yüksek CPU süresini tüketir.
 #
-# ✔ CPU Time ile Time Cost arasında fark varsa:
-#     - I/O beklemeleri
-#     - interpreter overhead
-#     - işletim sistemi scheduler farkları
-#   buna sebep olur.
+# ✔ Bellek Kullanımı
+#     - Tüm yöntemler yeni bir liste oluşturduğu için teorik Space Complexity → O(n)
+#     - Bellek kullanımları birbirine çok yakındır 
+#     - LC ve filter daha toplu çalıştığından peak değerleri daha düzenlidir
+#     - For Loop hafif daha düşük peak üretmiştir
+#
+# ✔ Time Cost ↔ CPU Time farkının nedenleri
+#     - Interpreter overhead
+#     - İşletim sistemi scheduler etkileri
+#     - CPU Turbo Boost / Cache davranışları
+#     - Çok küçük I/O gecikmeleri
+#
+# ✔ Yöntemlerin Davranış Özeti
+#     🔵 List Comprehension
+#         • C seviyesinde optimize edilir → en hızlı yöntemdir
+#         • Python CPU zamanını neredeyse hiç kullanmaz - CPU olmak yerine interpreter dışı optimize çalışma
+#         • En modern ve Pythonic çözüm
+#     🔵 filter() + lambda
+#         • filter() C’de hızlıdır fakat lambda Python seviyesinde çalışır - ek yük getirir
+#         • Overhead nedeniyle en yavaş yöntemdir#
+#     🔵 For Loop
+#         • Python yorumlayıcısı elemanları tek tek işlediği için yavaştır
+#         • Ancak scheduler avantajı nedeniyle filter()’dan hızlı olabilir
+#         • CPU yükü yüksektir, okunabilirlik daha düşüktür
 #
 # ✔ Gerçek projelerde:
 #     Performans + okunabilirlik için LC en iyi tercihtir.
