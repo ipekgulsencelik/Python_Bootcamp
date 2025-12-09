@@ -18,6 +18,11 @@
 #   - map() bir map objesi döndürür → çoğunlukla list() ile listeye çevrilir.
 #   - Fonksiyon olarak lambda, str, int, float veya herhangi bir fonksiyon verilebilir.
 
+# map():
+#   - Birden fazla listeyi paralel olarak iterate eder.
+#   - zip ile aynı kurala sahiptir → EN KISA liste kadar çalışır.
+#   - Uzun listedeki sondaki elemanlar YOK SAYILIR.
+
 from random import randint
 
 # region Square Each Element — map + lambda
@@ -29,9 +34,14 @@ from random import randint
 # squares = list(map(lambda x: x ** 2, nums)) # lambda x: x**2 → alınan elemanın karesini üretir.
 # print(squares)      # Örnek çıktı: [1, 4, 9, 16, 25]
 
-# Alternatif kısa kullanım:
+# Alternatif Kısa Kullanım:
 # print(
 #     list(map(lambda x: x ** 2, nums))
+# )
+
+# print(
+#     list(
+#         map(lambda x: x ** 2, [i  for i in range(10)]))
 # )
 # endregion
 
@@ -48,9 +58,14 @@ from random import randint
 # nums_str = list(map(str, nums))
 # print(nums_str)     # ['1', '2', '3', '4', '5']
 
-# Alternatif kısa kullanım:
+# Alternatif Kısa Kullanım:
 # print(
 #     list(map(str, nums))
+# )
+
+# print(
+#     list(
+#         map(str, [i  for i in range(10)]))
 # )
 # endregion
 
@@ -58,17 +73,13 @@ from random import randint
 # region Check '@' in E-mail Addresses — map + lambda
 #   Listedeki her mail adresi '@' içeriyor mu? → True / False listesi üretmek.
 
-# mail_address = [
-#     "merwe.tasci@gmail.com",
-#     "mersbymer@gmail.com",
-#     "egitimekingmail.com"
-# ]
+# mail_address = ["burak.yilmaz@outlook.com", "hakan.yilmaz", "ipek.yilmaz@outlook.com"]
 
 # lambda x: '@' in x → eğer x içinde '@' varsa True, yoksa False döner.
 # mail_valid_flags = list(map(lambda x: '@' in x, mail_address))
-# print(mail_valid_flags)   # [True, True, False]
+# print(mail_valid_flags)   # [True, False, True]
 
-# Alternatif kısa kullanım:
+# Alternatif Kısa Kullanım:
 # print(
 #     list(
 #         map(lambda x: '@' in x, mail_address)
@@ -82,18 +93,24 @@ from random import randint
 
 # Yapı:
 #   products = [isim, stok, fiyat]
-#   p[2] → ürünün fiyatı
+#   x[2] → ürünün fiyatı
 #   round(değer, 2) → virgülden sonra 2 basamak
 
 # products = [
-#     ["boxing gloves", 100, 59.99],
-#     ["pucnhing bags", 150, 160.99],
-#     ["hand wrap", 200, 11.99]
+#     ["Boxing Gloves", 100, 59.99],
+#     ["Pucnhing Bags", 150, 160.99],
+#     ["Hand Wrap", 200, 11.99]
 # ]
 
-# lambda p: round(p[2] * 1.10, 2) → ürünün fiyatına %10 zam ekler ve iki basamaklı yuvarlar.
+# print(
+#     list(
+#         map(lambda x: x[2] * 1.10, products)
+#     )
+# )
+
+# lambda x: round(x[2] * 1.10, 2) → ürünün fiyatına %10 zam ekler ve iki basamaklı yuvarlar.
 # products_price = list(
-#     map(lambda p: round(p[2] * 1.10, 2), products)
+#     map(lambda x: round(x[2] * 1.10, 2), products)
 # )
 
 # print(products_price)     # [65.99, 177.09, 13.19]
@@ -104,13 +121,19 @@ from random import randint
 # Her ürün listesinin ilk elemanı olan isimleri topluca çekmek.
 
 # products = [
-#     ["boxing gloves", 100, 59.99],
-#     ["pucnhing bags", 150, 160.99],
-#     ["hand wrap", 200, 11.99]
+#     ["Boxing Gloves", 100, 59.99],
+#     ["Pucnhing Bags", 150, 160.99],
+#     ["Hand Wrap", 200, 11.99]
 # ]
 
-# products_name = list(map(lambda p: p[0], products))
-# print(products_name)      # ['boxing gloves', 'pucnhing bags', 'hand wrap']
+# print(
+#     list(
+#         map(lambda x: x[0], products)
+#     )
+# )
+
+# products_name = list(map(lambda x: x[0], products))
+# print(products_name)      # ['Boxing Gloves', 'Pucnhing Bags', 'Hand Wrap']
 # endregion
 
 
@@ -124,6 +147,12 @@ from random import randint
 
 # names = ['burak yılmaz', 'hakan yilmaz', 'ipek yilmaz']
 
+# print(
+#     list(
+#         map(str.title, names)
+#     )
+# )
+
 # list_name = list(map(str.title, names))
 # print(list_name)          # ['Burak Yılmaz', 'Hakan Yilmaz', 'Ipek Yilmaz']
 # endregion
@@ -132,15 +161,23 @@ from random import randint
 # region Generate outlook E-mail from Names — map + lambda
 # "ad soyad" → "ad.soyad@outlook.com" formunda mail üretmek.
 
+# domain_name = '@outlook.com'
+
 # names = ['burak yılmaz', 'hakan yilmaz', 'ipek yilmaz']
 
+# print(
+#     list(
+#         map(lambda x: f"{x.lower().replace(' ', '.')}{domain_name}", names)
+#     )
+# )
+
 # Adımlar:
-#   - n.lower()         → tüm harfleri küçült
+#   - x.lower()         → tüm harfleri küçült
 #   - replace(' ', '.') → boşlukları nokta yap
 #   - sonuna '@outlook.com' ekle
 
 # emails_list = list(
-#     map(lambda n: n.lower().replace(' ', '.') + "@outlook.com", names)
+#     map(lambda x: x.lower().replace(' ', '.') + domain_name, names)
 # )
 # print(emails_list)
 # Örnek:
@@ -149,27 +186,51 @@ from random import randint
 
 
 # region Sum Two Lists — zip + list comprehension vs map
-# list1 ve list2 içindeki karşılık gelen elemanları toplayarak yeni bir liste üretmek.
+# Aşağıdaki iki listeyi eleman bazında toplayarak yeni bir listeye ekleyin.
+# Not:
+#   - Bir liste diğerinden kısa olabilir, bunu göz önünde bulundurarak çözün.
 
-# list1 = [87, 67, 81, 69, 65, 99, 79, 57, 62, 65]
-# list2 = [20, 39, 46, 100, 48, 34, 75, 59]
+# lst_1 = [87, 67, 81, 69, 65, 99, 79, 57, 62, 65]
+# lst_2 = [20, 39, 46, 100, 48, 34, 75, 59]
 
 # Her iki yöntem de aynı sonucu üretir.
 
+# zip():
+#   - İki listeyi eleman bazında eşleştirir.
+#   - Listeler farklı uzunlukta ise sadece EN KISA listenin uzunluğu kadar döner.
+#   - Uzun listedeki fazla elemanlar YOK SAYILIR.
+
 # Yöntem 1: List Comprehension + zip
 #   zip(list1, list2) → iki listeyi eleman bazında eşleştirir.
-# sum_list_lc = [x + y for x, y in zip(list1, list2)]
+# sum_list_lc = [x + y for x, y in zip(lst_1, lst_2)]
 # print(sum_list_lc)
 
+# print(
+#     list(
+#         map(lambda x: x[0] + x[1], zip(lst_1, lst_2))
+#     )
+# )
+
+# map():
+#   - Birden fazla listeyi paralel olarak iterate eder.
+#   - zip ile aynı kurala sahiptir → EN KISA liste kadar çalışır.
+#   - Uzun listedeki sondaki elemanlar YOK SAYILIR.
+
 # Yöntem 2: map + lambda (iki listeyi aynı anda gezer)
-# sum_list_map = list(map(lambda x, y: x + y, list1, list2))
+# sum_list_map = list(map(lambda x, y: x + y, lst_1, lst_2))
 # print(sum_list_map)
+
+# print(
+#     list(
+#         map(lambda x, y: x + y, lst_1, lst_2)
+#     )
+# )
 
 # Not — Performance:
 #   ✔ List Comprehension genelde daha hızlıdır çünkü CPython tarafından C seviyesinde optimize edilmiştir.
 #   ✔ map + lambda daha yavaştır; lambda her elemanda ekstra function call maliyeti yaratır.
 #   ✔ map + builtin (str, int, float) → en hızlı senaryodur (lambda kullanılmadığında).
-#
+
 # Kısaca:
 #   Hız Sıralaması → map(builtin) > List Comprehension > map(lambda)
 # endregion
@@ -182,19 +243,26 @@ from random import randint
 # Sonucu bir liste içinde ekrana yazdırın.
 
 # -100 ile +100 arasında 10 tane rastgele sayı üret
-#       numara = [randint(-100, 100) for _ in range(10)]
+#       nums = [randint(-100, 100) for _ in range(10)]
 # Sonrasında yalnızca pozitif olanları seçip string'e dönüştürmek.
-#       filter(lambda x: x > 0, numara)  → sadece pozitif sayıları alır
+#       filter(lambda x: x > 0, nums)  → sadece pozitif sayıları alır
 #       map(str, ...)                   → süzülen pozitifleri string'e çevirir
 
-# numara = [randint(-100, 100) for _ in range(10)]
+# nums = [randint(-100, 100) for _ in range(10)]
 
 # positive_strings = list(
-#     map(str, filter(lambda x: x > 0, numara))
+#     map(str, filter(lambda x: x > 0, nums))
 # )
 
 # print(numara)            # tüm sayılar (hem pozitif hem negatif)
 # print(positive_strings)  # sadece pozitiflerin string halleri, örn: ['55', '12', '90']
+
+# Tek satırlık Demo:
+# print(
+#     list(
+#         map(str, filter(lambda x: x > 0, [randint(-100, 100) for _ in range(10)]))
+#     )
+# )
 # endregion
 
 
@@ -223,6 +291,7 @@ from random import randint
 # Her iki listedeki sayıların toplamını alalım → zip + map + lambda
 # summed = list(map(lambda x, y: x + y, lst_1, lst_2))
 # summed = [x + y for x, y in zip(lst_1, lst_2)]        # lambda’sız — önerilen kullanım
+# summed = list(map(lambda x: x[0] + x[1], zip(lst_1, lst_2)))
 
 # Eğer toplam negatifse → pozitife dönüştürelim (abs())
 # converted = list(map(lambda x: abs(x), summed))     
