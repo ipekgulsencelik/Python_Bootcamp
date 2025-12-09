@@ -64,13 +64,30 @@ t1 = time.perf_counter()            # Yüksek çözünürlüklü zaman sayacı (
 
 
 # region Raise+Except
-try:
-    mail_address = input('Type mail address: ')
 
-    if '@' not in mail_address:
-        raise TypeError('Mail address has to contain "@" symbol..!')
-except TypeError as err:
-    print(err)
+# try:
+#     bolunen = int(input('Bolunen: '))
+#     bolen = int(input('Bolen: '))
+
+#     # Manuel koşul kontrolü → raise ile hata fırlatma
+#     if bolen == 0:
+#         raise ZeroDivisionError("Bölen 0 olamaz..!")
+
+#     # Bölme işlemi
+#     sonuc = bolunen / bolen
+#     print(f"✔ Sonuç: {sonuc}")
+    
+# except ValueError:
+#     print("❌ Lütfen sadece sayısal değer giriniz!")
+
+# except ZeroDivisionError as err:
+#     # raise ile fırlattığımız hatayı burada yakalıyoruz
+#     print("❌", err)
+
+# except Exception as ex:
+#     # Beklenmeyen diğer hatalar
+#     print("❌ Beklenmeyen hata:", ex)
+
 # endregion
 
 
@@ -91,21 +108,6 @@ print(
     f'Runtime: {runtime_s:.6f} s\n'
     f'Peak Memory: {peak_memory:.8f} MB' 
 )
-
-"""
-===============================
-Method --> Try/Except
-Runtime: 12.5383958 s
-Peak Memory: 0.00035190582275390625 MB
-===============================
-Method --> If/Else
-Runtime: 7.2606712 s
-Peak Memory: 0.00035190582275390625 MB
-===============================
-Method --> Raise+Except
-Runtime: 26.0935943 s
-Peak Memory: 0.000209808349609375 MB
-"""
 
 
 # region SUMMARY (PERFORMANCE RESULT)
