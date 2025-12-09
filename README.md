@@ -1,13 +1,13 @@
 # Python_Bootcamp
  Data Science &amp; Ai Development
 
-![Solved](https://img.shields.io/badge/Solved-11-blue?style=for-the-badge)
-![Easy](https://img.shields.io/badge/Easy-11-brightgreen?style=flat-square)
+![Solved](https://img.shields.io/badge/Solved-15-blue?style=for-the-badge)
+![Easy](https://img.shields.io/badge/Easy-15-brightgreen?style=flat-square)
 ![Medium](https://img.shields.io/badge/Medium-0-yellow?style=flat-square)
 ![Hard](https://img.shields.io/badge/Hard-0-red?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)
 
-![Progress](https://progress-bar.xyz/11)
+![Progress](https://progress-bar.xyz/15)
 
 # 🧠 LeetCode Solutions
 
@@ -38,7 +38,7 @@ LeetCode/
 
 | Difficulty | Solved |
 |-----------|--------|
-| Easy      | 11     |
+| Easy      | 15     |
 | Medium    | 0      |
 | Hard      | 0      |
 
@@ -76,14 +76,14 @@ Problems are automatically organized by LeetCode ID.
 All solution files follow the naming pattern:
 
 ```
-<problemID>-<short-name>.py
+<problemID>_<short-name>.py
 ```
 
 Examples:
 ```
-0058-length-of-last-word.py
-0027-remove-element.py
-0001-two-sum.py
+0058_length_of_last_word.py
+0027_remove_element.py
+0001_two_sum.py
 ```
 
 ---
