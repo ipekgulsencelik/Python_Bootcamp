@@ -857,7 +857,16 @@
 # Meyve ismi içinde "an" geçiyorsa True, geçmiyorsa False
 
 # Ternary (koşullu ifade) yapısı:
-#   True if koşul else False
+# Tek satırda if/else yazmamızı sağlayan koşullu ifade yapısıdır.
+
+# Genel Kullanım:
+#     value_if_true  if condition  else value_if_false
+
+# Örnek:
+#     result = "Even" if n % 2 == 0 else "Odd"
+
+# Not:
+#     Ternary ifadesi MUTLAKA bir "else" ister. Else'siz ternary olmaz.
 
 # Örnek:
 #   'adult' if age >= 18 else 'child'
@@ -886,3 +895,18 @@
 # for row in table:
 #     print(*row, sep="\t")
 # endregion
+
+
+# Ternary + List Comprehension:
+#     [value_if_true if condition else value_if_false for item in iterable]
+
+# Örnek:
+#     labels = ["E" if x % 2 == 0 else "O" for x in nums]
+
+# ❗ Else'siz kullanım sadece FİLTRELEME olur (ternary değildir):
+#     [x for x in lst if condition]
+
+# Örnek:
+#     evens = [x for x in nums if x % 2 == 0]
+
+# Bu yapı değer seçmez → sadece eleman filtreler.
