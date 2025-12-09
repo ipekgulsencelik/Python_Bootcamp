@@ -186,5 +186,31 @@
 # endregion
 
 
-# region Generate Random Matrix (3x4) + Transpose
+# region Generate Random Matrix (3x10)
+# 3 satır ve her satırda 10 sayı bulunan bir matris oluşturmak.
+# matrix içindeki 3 satırı zip() ile sütun bazında birleştirmek.
+
+# from random import randint
+
+# matrix = [
+#     [randint(0, 100) for _ in range(10)] for _ in range(3)
+# ]
+
+# print("Matrix:")
+# print(matrix)
+
+# zip(matrix[0], matrix[1], matrix[2]) → aynı sütundaki elemanları eşler.
+# zipped_list = list(
+#     zip(matrix[0], matrix[1], matrix[2])
+# )
+
+# Sütun bazında birleştirme → row sayısını bilmeye gerek yok
+# zipped_list = list(zip(*matrix))
+
+# Not:
+#   zip(*matrix) → satır sayısından bağımsız olarak tüm satırları otomatik açar.
+#   zip(matrix[0], matrix[1], matrix[2]) gibi manuel kullanım sadece sabit satır sayısında çalışır.
+
+# print("\nZipped List:")
+# print(zipped_list)
 # endregion
