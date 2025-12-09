@@ -54,6 +54,7 @@ class Solution:
         # 4) len → uzunluk
         # return len(s.rstrip().split()[-1])
 
+
 # Time Complexity:  O(n)
 #     - rstrip() ve split() fonksiyonlarının her ikisi de stringi birer kez tarar.
 
