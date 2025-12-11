@@ -243,19 +243,24 @@ from random import randint
 # Sonucu bir liste içinde ekrana yazdırın.
 
 # -100 ile +100 arasında 10 tane rastgele sayı üret
-#       nums = [randint(-100, 100) for _ in range(10)]
+#       numbers = [randint(-100, 100) for _ in range(10)]
 # Sonrasında yalnızca pozitif olanları seçip string'e dönüştürmek.
-#       filter(lambda x: x > 0, nums)  → sadece pozitif sayıları alır
-#       map(str, ...)                   → süzülen pozitifleri string'e çevirir
+#       filter(lambda x: x > 0, numbers)    → sadece pozitif sayıları alır
+#       map(str, ...)                       → süzülen pozitifleri string'e çevirir
 
-# nums = [randint(-100, 100) for _ in range(10)]
+# from random import randint
 
-# positive_strings = list(
-#     map(str, filter(lambda x: x > 0, nums))
+# numbers = (randint(a=-100, b=100) for _ in range(10))
+
+# positive_str = list(
+#     map(
+#         str,
+#         filter(lambda x: x > 0, numbers)
+#     )
 # )
 
-# print(numara)            # tüm sayılar (hem pozitif hem negatif)
-# print(positive_strings)  # sadece pozitiflerin string halleri, örn: ['55', '12', '90']
+# print(numbers)            # tüm sayılar (hem pozitif hem negatif)
+# print(positive_str)       # sadece pozitiflerin string halleri, örn: ['55', '12', '90']
 
 # Tek satırlık Demo:
 # print(
@@ -263,6 +268,34 @@ from random import randint
 #         map(str, filter(lambda x: x > 0, [randint(-100, 100) for _ in range(10)]))
 #     )
 # )
+# endregion
+
+
+#! join() Function 
+# join() → Bir ayraç (separator) kullanarak bir listedeki STRING elemanlarını tek bir string hâline getirir.
+# join sadece STRING iterable üzerinde çalışır. Eğer elemanlar int ise hata verir.
+
+# Genel söz dizimi:
+#       SEPARATOR.join(ITERABLE)
+
+# Örnek:
+#       '-'.join(['12', '45', '88'])  → '12-45-88'
+
+# Neden önemlidir?
+#   ✔ Çok hızlıdır (C seviyesinde optimize edilmiştir)
+#           → stringleri + operatöründen çok daha performanslı birleştirir
+#   ✔ String birleştirmenin en doğru yöntemidir
+#   ✔ CSV, log, telefon numarası, path, tarih formatı gibi birçok alanda kullanılır
+
+
+# region Example 1 — Basic join usage
+# Basit bir listeyi '-' ile birleştirelim:
+
+# lst = ['12', '45', '88']
+
+# result = '-'.join(lst)
+# print("Example 1:", result)     # Çıktı → Example 1: 12-45-88
+# print(type(result))     # <class 'str'>
 # endregion
 
 
@@ -277,28 +310,33 @@ from random import randint
 #   abs(x) → x negatifse pozitif yapar, pozitifse olduğu gibi bırakır.
 #            Örnek: abs(-10) = 10, abs(7) = 7
 
-# TOPLAMA NOTU:
-# ✔ lambda ile toplama → map(lambda x, y: x + y, ...)
-# ✔ lambda’sız toplama → [x + y for x, y in zip(...)]
-#       → Daha okunabilir ve genelde daha hızlıdır.
-
 # from random import randint
 
 # -100 ile +100 arasında 10'ar adet rastgele sayıdan oluşan iki liste üretelim.
-# lst_1 = [randint(-100, 100) for _ in range(10)]
-# lst_2 = [randint(-100, 100) for _ in range(10)]
+# a = [randint(a=-100, b=100) for _ in range(10)]
+# b = [randint(a=-100, b=100) for _ in range(10)]
 
 # Her iki listedeki sayıların toplamını alalım → zip + map + lambda
-# summed = list(map(lambda x, y: x + y, lst_1, lst_2))
-# summed = [x + y for x, y in zip(lst_1, lst_2)]        # lambda’sız — önerilen kullanım
-# summed = list(map(lambda x: x[0] + x[1], zip(lst_1, lst_2)))
+# result = [abs(x + y) for x, y in zip(a, b)]
 
 # Eğer toplam negatifse → pozitife dönüştürelim (abs())
-# converted = list(map(lambda x: abs(x), summed))     
-# converted = list(map(abs, summed))       # En temiz kullanım
+# lst_result = list(map(str, result))
 
-# print("Liste 1 :", lst_1)
-# print("Liste 2 :", lst_2)
-# print("Toplamları :", summed)
-# print("Pozitife dönüştürülmüş toplamlar :", converted)
+# print(lst_result)
+
+# listede bulunan string sayı değerlerini tek bir string içinde '-' karakteri ile birleştir
+# hint: str.join()
+
+# Not:
+#   str.join(iterable)
+#       → iterable içindeki string elemanları verilen ayraç ile birleştirir.
+
+# output: ['132', '51', '66', '21', '54', '150', '66', '79', '6', '105']
+
+# beklenen çıktı:
+# 132-51-66-21....
+# str_result = '-'.join(lst_result)
+# str_result = '-'.join(map(str, result))
+
+# print(str_result)
 # endregion
