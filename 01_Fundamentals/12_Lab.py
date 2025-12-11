@@ -52,8 +52,8 @@
 #       - Bu sayede: user["name"]  gibi erişimler çok hızlıdır.
 
 
+# Mini Cheatsheet — Dictionary Ne Zaman Kullanılmaz?
 """ 
-Mini Cheatsheet — Dictionary Ne Zaman Kullanılmaz?
 -------------------------------------------------------------------------------------------------------
 | Kullanım Durumu                              | Dict Kullanma!                   | Doğru Yapı        |
 |----------------------------------------------|----------------------------------|-------------------|
@@ -69,8 +69,8 @@ Mini Cheatsheet — Dictionary Ne Zaman Kullanılmaz?
  """
 
 
+# Mini Cheatsheet — dict vs list vs tuple vs set
 """
-Mini Cheatsheet — dict vs list vs tuple vs set
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 | Özellik / Yapı        | Dictionary (dict)           | List                     | Tuple                     | Set                                  |
 | ----------------------| ----------------------------| ------------------------ | ------------------------- | ------------------------------------ |
@@ -92,19 +92,19 @@ Mini Cheatsheet — dict vs list vs tuple vs set
 
 
 # region Nested Dictionary 
-my_dict = {
-    'Full Name': 'Burak Yılmaz',
-    'Age': 34,
-    'Lig': ['Eşrefpaşaspor', 'Beşiktaş', 'Galatasaray', 'Göztepe', 'Adanaspor'],
-    'Notebook': ('Lenovo x1 Carbon', 49.000),
-    'Display Card': {
-        'Name': 'TI4090',
-        'Memory': {
-            'Memory Type': 'DDR4',
-            'Memory Capacity': '64GB'
-        }
-    }
-}
+# my_dict = {
+#     'Full Name': 'Burak Yılmaz',
+#     'Age': 34,
+#     'Lig': ['Eşrefpaşaspor', 'Beşiktaş', 'Galatasaray', 'Göztepe', 'Adanaspor'],
+#     'Notebook': ('Lenovo x1 Carbon', 49.000),
+#     'Display Card': {
+#         'Name': 'TI4090',
+#         'Memory': {
+#             'Memory Type': 'DDR4',
+#             'Memory Capacity': '64GB'
+#         }
+#     }
+# }
 # endregion
 
 
@@ -119,15 +119,30 @@ my_dict = {
 #   .clear()    → Tüm içeriği sil
 
 
+# Mini Cheatsheet — Dictionary Performance Notes
+"""
+------------------------------------------------------------
+| İşlem      | Ortalama Zaman | Açıklama                   |
+|------------|----------------|----------------------------|
+| Access     | O(1)           | Hash tablosu               |
+| Insert     | O(1)           | Amortize sabit zaman       |
+| Update     | O(1)           | Key varsa override         |
+| Delete     | O(1)           | Hash tablodan çıkarma      |
+| Search k   | O(1)           | 'in' ile key kontrol       |
+| Search v   | O(n)           | Value taraması             |
+------------------------------------------------------------
+"""
+
+
 # region Movie Release Years Dictionary
-release_year_movies = {
-    'Fight Club': 1999,
-    'Matrix': 1999,
-    'Interstaller': 2014,
-    'Inception':2010,
-    'Fringe': 2008,
-    'Dune': 2021
-}
+# release_year_movies = {
+#     'Fight Club': 1999,
+#     'Matrix': 1999,
+#     'Interstaller': 2014,
+#     'Inception':2010,
+#     'Fringe': 2008,
+#     'Dune': 2021
+# }
 # endregion
 
 
@@ -138,46 +153,46 @@ release_year_movies = {
 # ✔ Köşeli parantez ([]) ile erişim:
 #       release_year_movies['Fight Club']  → Key yoksa KeyError fırlatır.
 
-print(
-    release_year_movies['Fight Club']
-)
+# print(
+#     release_year_movies['Fight Club']
+# )
 
 # Path - II → get() (Key bulunamazsa None döner, hata atmaz)
 # ✔ .get(key, default=None) ile erişim:
 #       release_year_movies.get('Fight Club')          → Key yoksa None döner.
 #       release_year_movies.get('Fight Club', '-')     → Key yoksa "-" döner (default).
 
-print(
-    release_year_movies.get('Fight Club')
-)
+# print(
+#     release_year_movies.get('Fight Club')
+# )
 
 # f-string ile formatlı çıktı
-print(f'Fringe Relase Year: {release_year_movies.get("Fringe")}')
+# print(f'Fringe Relase Year: {release_year_movies.get("Fringe")}')
 
 
 # Get All Values
-print("\nAll Values:")
-for value in release_year_movies.values():
-    print(value)
+# print("\nAll Values:")
+# for value in release_year_movies.values():
+#     print(value)
 
-print(f'Movie Release Year: {release_year_movies.values()}')
+# print(f'Movie Release Year: {release_year_movies.values()}')
 
 
 # Get All Keys
-print("\nAll Keys:")
-for key in release_year_movies.keys():
-    print(key)
+# print("\nAll Keys:")
+# for key in release_year_movies.keys():
+#     print(key)
 
-print(f'Movie List: {release_year_movies.keys()}')
+# print(f'Movie List: {release_year_movies.keys()}')
 
 
 # Get All Items
-print("\nAll Items:")
-for key, value in release_year_movies.items():
-    print(
-        f'Movie Name: {key}\n'
-        f'Release Year: {value}'
-    )
+# print("\nAll Items:")
+# for key, value in release_year_movies.items():
+#     print(
+#         f'Movie Name: {key}\n'
+#         f'Release Year: {value}'
+#     )
 # endregion
 
 
@@ -187,61 +202,61 @@ for key, value in release_year_movies.items():
 # for name, year in release_year_movies.items():
 #     print(f'Movie Name: {name} -- Release Year: {year}')
 
-from pprint import pprint
+# from pprint import pprint
 
 # Sözlüğü comprehension ile tekrar oluşturalım (örnek amaçlı)
-pprint({name: year for name, year in release_year_movies.items()})
+# pprint({name: year for name, year in release_year_movies.items()})
 # endregion
 
 
 # region Create Item
-release_year_movies['Dune II'] = 2023
-print("After Create:", release_year_movies)
+# release_year_movies['Dune II'] = 2023
+# print("After Create:", release_year_movies)
 # endregion
 
 
 # region Update Item
-release_year_movies.update({
-    'Dune II': 2024
-})
-print("After Update:", release_year_movies)
+# release_year_movies.update({
+#     'Dune II': 2024
+# })
+# print("After Update:", release_year_movies)
 # endregion
 
 
 # region Delete
-del release_year_movies['Dune II']
-print("After Delete:", release_year_movies)
+# del release_year_movies['Dune II']
+# print("After Delete:", release_year_movies)
 # endregion
 
 
-products = [
-    {'name': 'Everlast Pro Boxing Gloves', 'price': 245},  # burad ki he rbir satır product
-    {'name': 'Everlast Training Boxing Gloves', 'price': 145},
-    {'name': 'Everlast Heavy Bag', 'price': 345},
-    {'name': 'Everlast Hand-Wrap', 'price': 56},
-    {'name': 'Iphone 14 Pro Max', 'price': 44000},
-    {'name': 'Samsung G20', 'price': 13000},
-    {'name': 'Lenovo x1 Carbon', 'price': 49000},
-]
+# products = [
+#     {'name': 'Everlast Pro Boxing Gloves', 'price': 245},  # Buradaki her bir eleman bir product sözlüğüdür
+#     {'name': 'Everlast Training Boxing Gloves', 'price': 145},
+#     {'name': 'Everlast Heavy Bag', 'price': 345},
+#     {'name': 'Everlast Hand-Wrap', 'price': 56},
+#     {'name': 'Iphone 14 Pro Max', 'price': 44000},
+#     {'name': 'Samsung G20', 'price': 13000},
+#     {'name': 'Lenovo x1 Carbon', 'price': 49000},
+# ]
 
 # region Products — Total Price of All Products
 # products listesinde ki bütün ürünlerin fiyatlarını toplayın
-total_price = 0
-for product in products:
-    # product.get('price') → safety (key yoksa None dönebilir)
-    total_price += product.get('price')  # product['price'] da kullanılabilir.
+# total_price = 0
+# for product in products:
+#     # product.get('price') → safety (key yoksa None dönebilir)
+#     total_price += product.get('price')  # product['price'] da kullanılabilir.
 
-print(f'Total Price of Collection is {total_price}')
-# endregion
+# print(f'Total Price of Collection is {total_price}')
+# # endregion
 
 
 # region Products — Filter by Price (>= 30.000)
 # products listesindeki ürün fiyatı 30.000'den büyük veya eşit olan ürünlerin isimlerini listeleyiniz.
 
-print("\nProducts with price >= 30000:")
-for product in products:
-    if product['price'] >= 30000:
-        print(product['name'])
+# print("\nProducts with price >= 30000:")
+# for product in products:
+#     if product['price'] >= 30000:
+#         print(product['name'])
 # endregion
 
 
@@ -249,10 +264,10 @@ for product in products:
 # ürün adı içerisinde 'Everlast' geçen ve fiyat aralığı 150 ile 300 arasında olan ürünleri listelyiniz
 
 # Çözüm yolu __contains__ ile
-print("\nEverlast products with 150 <= price <= 300 (using __contains__):")
-for product in products:
-    if product['name'].__contains__('Everlast') and 150 <= product['price'] <= 300:
-        pprint(product)
+# print("\nEverlast products with 150 <= price <= 300 (using __contains__):")
+# for product in products:
+#     if product['name'].__contains__('Everlast') and 150 <= product['price'] <= 300:
+#         pprint(product)
 
 # Yukarıda kullandığımız __contains__ fonksiyonu string ifadelere uygulanan built-in bir fonksiyondur. 
 # Çalışma mantığı:
@@ -264,10 +279,10 @@ for product in products:
 # ✔ 'key' in dict       → key var mı?
 # ✔ DİKKAT: 'value' in dict ifadesi VALUE’ları değil KEY’leri kontrol eder.
 
-print("\nEverlast products with 150 <= price <= 300 (using 'in'):")
-for product in products:
-    if 'Everlast' in product['name'] and 150 <= product['price'] <= 300:
-        pprint(product)
+# print("\nEverlast products with 150 <= price <= 300 (using 'in'):")
+# for product in products:
+#     if 'Everlast' in product['name'] and 150 <= product['price'] <= 300:
+#         pprint(product)
 
 # Not:
 #   - 'Everlast' in product['name'] ifadesi, __contains__ ile aynı işi yapar
@@ -287,9 +302,14 @@ for product in products:
 #   ✔ Okunabilir
 #   ✔ Veri dönüştürme işlemleri için ideal
 
-# Örnek:
-#   numbers = [1, 2, 3, 4, 5]
-#   squares = {x: x * x for x in numbers}
+# region Sample - Dictionary Comprehension
 
+# from pprint import pprint
+
+# numbers = [1, 2, 3, 4, 5]
+
+# squares = {x: x * x for x in numbers}
+# pprint({number: square for number, square in squares.items()})
 # Sonuç:
 #   {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+# endregion
