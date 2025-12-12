@@ -185,6 +185,13 @@ from random import randint
 # endregion
 
 
+# Not:
+#   • zip() → kısa listeyi esas alır
+#   • map() → kısa listeyi esas alır
+#   • zip_longest() → uzun listeyi esas alır (fillvalue ile)
+#   • Farklı uzunlukta liste toplama = zip_longest + fillvalue=0
+
+
 # region Sum Two Lists — zip + list comprehension vs map
 # Aşağıdaki iki listeyi eleman bazında toplayarak yeni bir listeye ekleyin.
 # Not:
