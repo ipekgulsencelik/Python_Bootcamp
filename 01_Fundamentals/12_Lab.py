@@ -118,6 +118,30 @@
 #   .popitem()  → Son eklenen çifti sil ve döndür (LIFO)
 #   .clear()    → Tüm içeriği sil
 
+""" 
+| Yapı            | Ne Döner?       | Açıklama                       | Örnek                |
+| --------------- | --------------- | ------------------------------ | -------------------- |
+| **dict**        | key → value     | Anahtar–değer yapısı           | `{'name': 'Ali'}`    |
+| **key**         | Anahtar         | Değere ulaşmak için kullanılır | `'name'`             |
+| **value**       | Değer           | Asıl veri                      | `'Ali'`              |
+| **keys()**      | Tüm key’ler     | Sadece anahtarlar              | `dict.keys()`        |
+| **values()**    | Tüm value’lar   | Sadece değerler                | `dict.values()`      |
+| **items()**     | (key, value)    | Anahtar + değer birlikte       | `dict.items()`       |
+| **get(key)**    | value / None    | Güvenli erişim                 | `dict.get('name')`   |
+| **get(key, d)** | value / default | Yoksa varsayılan döner         | `dict.get('age', 0)` |
+| **dict[key]**   | value           | Direkt erişim                  | `dict['name']`       |
+| **in dict**     | True / False    | Key var mı kontrolü            | `'name' in dict`     |
+
+"""
+
+""" 
+| Kullanım           | Key varsa | Key yoksa |
+| ------------------ | --------- | --------- |
+| dict[key]          |  value    |  KeyError |
+| dict.get(key)      |  value    |  None     |
+| dict.get(key, '-') |  value    |  -        | 
+"""
+
 
 # Mini Cheatsheet — Dictionary Performance Notes
 """
@@ -237,7 +261,7 @@
 #     {'name': 'Iphone 14 Pro Max', 'price': 44000},
 #     {'name': 'Samsung G20', 'price': 13000},
 #     {'name': 'Lenovo x1 Carbon', 'price': 49000},
-# ]
+# ] 
 
 # region Products — Total Price of All Products
 # products listesinde ki bütün ürünlerin fiyatlarını toplayın
@@ -302,6 +326,16 @@
 #   ✔ Okunabilir
 #   ✔ Veri dönüştürme işlemleri için ideal
 
+""" 
+| Yapı               | Sembol                 | Dönen |
+| ------------------ | ---------------------- | ----- |
+| List comprehension | [x for x in ...]       | Liste |
+| Dict comprehension | {k: v for k, v in ...} | Dict  |
+| Set comprehension  | {x for x in ...}       | Set   |
+
+ """
+
+
 # region Sample - Dictionary Comprehension
 
 # from pprint import pprint
@@ -312,4 +346,371 @@
 # pprint({number: square for number, square in squares.items()})
 # Sonuç:
 #   {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+# endregion
+
+
+# region Product List
+# products = [
+#     {'name': 'Lenovo X1 Carbon', 'price': 110.000},
+#     {'name': 'Lenovo Thinkpad',  'price': 89.000},
+#     {'name': 'Macbook Pro',      'price': 250.000},
+#     {'name': 'Macbook Air',      'price': 125.000},
+#     {'name': 'Asus Zenbook',     'price': 150.000},
+#     {'name': 'Monster Huma',     'price': 55.000},
+#     {'name': 'Monster Alba'},               # price yok
+#     {'price': 100.000},                     # name yok
+# ]
+# endregion
+
+
+# region Path I — Total Price Calculation (loop)
+#todo: products listesindeki tüm ürünlerin fiyatlarını toplayarak toplam fiyatı hesaplayınız.
+
+# total_price = 0
+
+# for product in products:    # Her product bir sözlüktür (dict)
+#     total_price += product.get('price', 0)     # total_price = total_price + product.get('price', 0)
+    
+    # product.get('price', 0):
+    #   - 'price' anahtarı varsa değerini alır
+    #   - Yoksa 0 döner (KeyError oluşmasını engeller)
+
+# print(f"Total Price: {total_price}")
+# endregion
+
+
+# region Path II — Total Price Calculation (sum + Generator Expression)
+#todo: products listesindeki tüm ürünlerin fiyatlarını, sum() ve generator expression kullanarak hesaplayınız.
+
+# NASIL ÇALIŞIR?
+#   - (product.get('price', 0) for product in products)
+#       → price değerlerini TEK TEK üreten bir generator oluşturur
+#   - sum(...) bu değerleri toplayarak total_price değerini döndürür
+
+# total_price = sum(product.get('price', 0) for product in products)
+
+# print(f"Total Price: {total_price}")
+# endregion
+
+
+# region Filter Products — Price Greater Than Threshold
+# TODO: products listesindeki ürünlerden, fiyatı 100.000'dan BÜYÜK olanları filtreleyiniz.
+
+# Not:
+#   - List comprehension kullanılır
+#   - product.get('price', 0)
+#       → 'price' anahtarı varsa değerini alır
+#       → Yoksa 0 döner (KeyError oluşmasını engeller)
+
+# price_threshold = 100.000   # → karşılaştırma değeri
+
+# filtered_products = [product for product in products if product.get('price', 0) > price_threshold]
+
+# for product in filtered_products:
+#     print(
+#         f"Product Name: {product.get('name', 'Unknown Product')}\n"
+#         f"Price: {product.get('price', 'N/A')}\n"
+#         "-----------------------------"
+#     )
+# endregion
+
+
+# region Filter Products by Name & Price Range
+# TODO: Ürün adı içerisinde "Lenovo" geçen VE fiyatı 100.000 ile 150.000 arasında olan ürünleri listeleyiniz.
+
+# NOT:
+#   - get() kullanımı KeyError riskini önler
+#   - and operatörü ile tüm şartların aynı anda sağlanması beklenir
+
+# name_kwd = 'Lenovo'
+# min_price = 100.000
+# max_price = 150.000
+
+# filtered_products = [
+#     product for product in products
+#     if name_kwd in product.get('name', '') and
+#     min_price < product.get('price', 0) < max_price
+# ]
+
+# for product in filtered_products:
+#     print(
+#         f"Product Name: {product.get('name', 'Unknown')}\n"
+#         f"Price: {product.get('price', 'N/A')}\n"
+#         "-----------------------------"
+#     )
+# endregion
+
+
+# region uuid4
+#   uuid4()  → rastgele UUID üretir (random).
+#   - uuid.UUID tipinde bir nesne döndürür.
+#   Her çağrıda farklı bir UUID üretir.
+#   uuid4 → CRUD ve kullanıcı kayıtları için uygundur.
+
+# GÜNLÜK HAYAT BENZETMESİ:
+#   uuid4 = çekiliş numarası 🎟️
+#   - Herkesin numarası farklıdır.
+#   - Aynı numara tekrar üretilmez.
+
+# from uuid import uuid4
+# from pprint import pprint
+
+# Her çağrıda farklı bir UUID üretir.
+# uuid4_1 = uuid4()
+# uuid4_2 = uuid4()
+
+# print("uuid4 Demo")
+# print("uuid4 1:", uuid4_1)
+# print("uuid4 2:", uuid4_2)
+# print("Same?:", uuid4_1 == uuid4_2)   # False → her zaman farklı
+# print("Type :", type(uuid4_1))    # <class 'uuid.UUID'>
+
+# uuid4() bir UUID objesi döndürür.
+# CRUD uygulamalarında genelde string'e çevrilerek kullanılır.
+# print("\nString Conversion")
+# print("uuid4 as str:", str(uuid4_1), "| type:", type(str(uuid4_1)))
+
+# categories = {}
+
+# uuid4 → her kayıt benzersiz ID alır
+# categories[str(uuid4())] = {
+#     'name': 'Boxing Gloves',
+#     'source': 'uuid4 (random)'
+# }
+
+# print("\nCATEGORIES:")
+# pprint(categories)
+# endregion
+
+
+# region uuid5
+#   uuid5() → aynı namespace + aynı input için her zaman aynı UUID üretir (deterministic).
+#   - uuid.UUID tipinde bir nesne döndürür.
+#   Rastgele değildir.
+#   Sabit kimlik (stable identifier) gereken durumlar için uygundur.
+
+# GÜNLÜK HAYAT BENZETMESİ:
+#   uuid5 = TC kimlik mantığı 🆔
+#   - Aynı kişi → aynı numara
+#   - Numara değişmez
+
+
+# from uuid import uuid5, NAMESPACE_DNS
+# from pprint import pprint
+
+# Aynı namespace + aynı string → her zaman aynı UUID üretir.
+# uuid5_1 = uuid5(NAMESPACE_DNS, "Boxing Gloves")
+# uuid5_2 = uuid5(NAMESPACE_DNS, "Boxing Gloves")
+
+# print("\nuuid5 Demo")
+# print("uuid5 1:", uuid5_1)
+# print("uuid5 2:", uuid5_2)
+# print("Same?:", uuid5_1 == uuid5_2)   # True → aynı input, aynı UUID
+# print("Type :", type(uuid5_1))      # <class 'uuid.UUID'>
+
+# uuid5() bir UUID objesi döndürür.
+# CRUD uygulamalarında genelde string'e çevrilerek kullanılır.
+# print("\nString Conversion")
+# print("uuid5 as str:", str(uuid5_1), "| type:", type(str(uuid5_1)))
+
+# categories = {}
+
+# # uuid5 → aynı input → aynı ID
+# categories[str(uuid5(NAMESPACE_DNS, "MMA Gloves"))] = {
+#     'name': 'MMA Gloves',
+#     'source': 'uuid5 (deterministic)'
+# }
+
+# print("\nCATEGORIES:")
+# pprint(categories)
+
+# uuid5 Overwrite
+#   - uuid5 aynı girdiye her zaman aynı ID üretir.
+#   - CRUD uygulamalarında overwrite riski vardır.
+#   - Sabit kimlik gerektiren durumlar için uygundur.
+
+# Aynı input ile üretilen uuid5'ler AYNI olduğu için dictionary içinde önceki kayıt overwrite edilir.
+# key_a = str(uuid5(NAMESPACE_DNS, "Same Name"))
+# key_b = str(uuid5(NAMESPACE_DNS, "Same Name"))
+
+# categories[key_a] = {'name': 'Same Name - First'}
+# categories[key_b] = {'name': 'Same Name - Second'}
+
+# print("\nuuid5 Overwrite Demo (same key)")
+# print("key_a == key_b ?", key_a == key_b)  # True
+# pprint(categories)
+# endregion
+
+
+""" 
+| Senaryo                | Kullanılacak Yapı |
+| ---------------------- | ----------------- |
+| ID ile kayıt bulma     | dict[key]         |
+| Güvenli okuma          | get()             |
+| Tüm kayıtları gezme    | items()           |
+| Sadece kayıt bilgileri | values()          |
+| Sadece ID’ler          | keys()            |
+| Var mı kontrolü        | key in dict       |
+ """
+
+
+# region CRUD App (uuid4)
+# uuid4() kullanarak ID üreten, dictionary tabanlı bir CRUD uygulaması geliştirmek.
+#   1. CREATE (Yeni Kayıt Oluşturma)
+#      - ID bilgisi uuid4() fonksiyonu kullanılarak üretilecek (örnek: 'd912b8cf-0b59-4efb-bfcf-17356dd59c9b').
+#   2. UPDATE (Kayıt Güncelleme)
+#      - Kullanıcıdan güncellenecek kaydın ID bilgisi alınacak ve ilgili kaydın name ve description alanları güncellenecek.
+#   3. DELETE (Kayıt Silme)
+#      - Kullanıcıdan silinecek kaydın ID bilgisi alınacak ve ilgili kayıt dictionary içinden silinecek.
+#   4. READ (Kayıt Listeleme)
+#      - Tüm kayıtlar listelenecek.
+#      - Kullanıcıdan kategori adı alınacak ve bu ada göre eşleşen kayıtlar listelenecek.
+
+from uuid import uuid4          # Benzersiz ID üretmek için
+from pprint import pprint      # Daha okunabilir çıktı için
+
+
+categories = {       # 1️⃣ DIŞ (outer) dict
+    'd912b8cf-0b59-4efb-bfcf-17356dd59c9b': {
+        'name': 'Boxing Gloves',
+        'description': 'Best boxing gloves'
+    },      # 2️⃣ İÇ (inner) dict
+    '9ecfa748-ee8e-4ac3-a471-33e1fd9fe52c': {
+        'name': 'MMA Gloves',
+        'description': 'Best MMA gloves'
+    }       # 3️⃣ İÇ (inner) dict
+}
+
+# categories:
+#   - key   → category id (string UUID)
+#   - value → category bilgileri (dict)
+
+# categories bir dict, içindeki her value da bir dict → nested dict
+
+while True:
+    process = input(
+        "\nType a process name "
+        "(create | get all | get by id | get by name | update | delete | exit): "
+    ).lower()
+
+    match process:
+        case 'create':
+            new_name = input('Please type a category name: ')
+            new_descp = input('Please type a description: ')
+
+            # uuid4() → rastgele ve benzersiz ID üretir
+            categories[str(uuid4())] = {
+                'name': new_name,
+                'description': new_descp
+            }
+
+            print('\n✅ Category created successfully!')
+            pprint(categories)
+        case 'get all':
+            print('\n📦 All Categories:')
+            pprint(categories)
+        case 'get by id':
+            cat_id = input("Category id: ").strip().lower()
+
+            filtered_categories = {id: info for id, info in categories.items() if cat_id in id.lower()}
+
+            if filtered_categories:
+                print('\n🔍 Matching Categories:')
+                pprint(filtered_categories)
+            else:
+                print('\n❌ No category found.')
+        case 'get by name':
+            cat_name = input('Category name: ').lower()
+
+            filtered_categories = [category for category in categories.values() if cat_name in category.get('name', '').lower()]
+
+            if filtered_categories:
+                print('\n🔍 Matching Categories:')
+                pprint(filtered_categories)
+            else:
+                print('\n❌ No category found.')
+        case 'update':
+            cat_id = input('Category id: ').lower()
+
+            if cat_id in categories:
+                new_name = input('Please type a category name: ')
+                new_descp = input('Please type a description: ')
+
+                print("\nBefore:")
+                pprint({cat_id: categories[cat_id]})
+
+                categories[cat_id].update({
+                    'name': new_name,
+                    'description': new_descp
+                })
+
+                print('\n✏️ Category updated successfully!')
+                pprint({cat_id: categories[cat_id]})
+
+                print('\n📦 All Categories:')
+                pprint(categories)
+            else:
+                print('\n❌ No category found.')
+        case 'delete':
+            cat_id = input('Category id: ').lower()
+
+            if cat_id in categories:
+                del categories[cat_id]
+                print('\n🗑 Category deleted successfully!')
+
+                print('\n📦 All Categories:')
+                pprint(categories)
+            else:
+                print('\n❌ No category found.')
+        case 'exit':
+            print('\n👋 Exiting application...')
+            break
+        case _:
+            print('\n❌ Invalid process type!')
+# endregion
+
+
+""" 
+| Kafada Kalacak Cümle        |
+| --------------------------- |
+| **Key → erişim anahtarı**   |
+| **Value → veri**            |
+| **items() → key + value**   |
+| **values() → sadece value** |
+| **keys() → sadece key**     |
+| **get() → güvenli erişim**  |
+"""
+
+# region DICTIONARY UPDATE — IMPORTANT NOTE
+# NOT:
+#   Dictionary (dict) üzerinde yapılan update / delete / create işlemleri
+#   SADECE program çalıştığı sürece geçerlidir.
+#
+# NEDEN?
+#   - Dictionary verileri RAM (hafıza) üzerinde tutulur.
+#   - Program kapandığında RAM temizlenir.
+#   - Program tekrar çalıştırıldığında kod en baştan okunur.
+#
+# SONUÇ:
+#   - Program içinde update edilen bir dictionary,
+#     program yeniden çalıştırıldığında
+#     ilk tanımlandığı haline geri döner.
+#
+# ÖRNEK AKIŞ:
+#   1) Program çalışır → categories oluşturulur
+#   2) update / delete yapılır → RAM'de değişir
+#   3) Program kapanır → RAM sıfırlanır
+#   4) Program tekrar çalışır → eski hal geri gelir
+#
+# BENZETME:
+#   - Dictionary = beyaz tahta 🧽
+#   - Program kapanınca tahta silinir
+#
+# KALICI OLMASI İÇİN:
+#   - Dosyaya yazılmalı (txt / json)
+#   - veya veritabanı kullanılmalı
+#
+# ÖZET CÜMLE:
+#   RAM’de yapılan update / delete / create kalıcı değildir.
+#   Program tekrar çalışınca koddaki başlangıç sözlüğü yeniden oluşturulur.
 # endregion
