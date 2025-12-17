@@ -566,20 +566,20 @@
 #      - Tüm kayıtlar listelenecek.
 #      - Kullanıcıdan kategori adı alınacak ve bu ada göre eşleşen kayıtlar listelenecek.
 
-from uuid import uuid4          # Benzersiz ID üretmek için
-from pprint import pprint      # Daha okunabilir çıktı için
+# from uuid import uuid4          # Benzersiz ID üretmek için
+# from pprint import pprint      # Daha okunabilir çıktı için
 
 
-categories = {       # 1️⃣ DIŞ (outer) dict
-    'd912b8cf-0b59-4efb-bfcf-17356dd59c9b': {
-        'name': 'Boxing Gloves',
-        'description': 'Best boxing gloves'
-    },      # 2️⃣ İÇ (inner) dict
-    '9ecfa748-ee8e-4ac3-a471-33e1fd9fe52c': {
-        'name': 'MMA Gloves',
-        'description': 'Best MMA gloves'
-    }       # 3️⃣ İÇ (inner) dict
-}
+# categories = {       # 1️⃣ DIŞ (outer) dict
+#     'd912b8cf-0b59-4efb-bfcf-17356dd59c9b': {
+#         'name': 'Boxing Gloves',
+#         'description': 'Best boxing gloves'
+#     },      # 2️⃣ İÇ (inner) dict
+#     '9ecfa748-ee8e-4ac3-a471-33e1fd9fe52c': {
+#         'name': 'MMA Gloves',
+#         'description': 'Best MMA gloves'
+#     }       # 3️⃣ İÇ (inner) dict
+# }
 
 # categories:
 #   - key   → category id (string UUID)
@@ -587,86 +587,87 @@ categories = {       # 1️⃣ DIŞ (outer) dict
 
 # categories bir dict, içindeki her value da bir dict → nested dict
 
-while True:
-    process = input(
-        "\nType a process name "
-        "(create | get all | get by id | get by name | update | delete | exit): "
-    ).lower()
+# while True:
+#     process = input(
+#         "\nType a process name "
+#         "(create | get all | get by id | get by name | update | delete | exit): "
+#     ).lower()
 
-    match process:
-        case 'create':
-            new_name = input('Please type a category name: ')
-            new_descp = input('Please type a description: ')
+#     match process:
+#         case 'create':
+#             new_name = input('Please type a category name: ')
+#             new_descp = input('Please type a description: ')
 
-            # uuid4() → rastgele ve benzersiz ID üretir
-            categories[str(uuid4())] = {
-                'name': new_name,
-                'description': new_descp
-            }
+#             # uuid4() → rastgele ve benzersiz ID üretir
+#             categories[str(uuid4())] = {
+#                 'name': new_name,
+#                 'description': new_descp
+#             }
 
-            print('\n✅ Category created successfully!')
-            pprint(categories)
-        case 'get all':
-            print('\n📦 All Categories:')
-            pprint(categories)
-        case 'get by id':
-            cat_id = input("Category id: ").strip().lower()
+#             print('Category created successfully!')
+#             pprint(categories)
+#         case 'get all':
+#             print('All Categories:')
+#             pprint(categories)
+#         case 'get by id':
+#             category_key = input('Category Key: ').lower()
 
-            filtered_categories = {id: info for id, info in categories.items() if cat_id in id.lower()}
+#             result = categories.get(category_key)
+#             if result is None:
+#                 print('There is no such a category..!')
+#             else:
+#                 print(result)
+#         case 'get by name':
+#             cat_name = input('Category name: ').lower()
 
-            if filtered_categories:
-                print('\n🔍 Matching Categories:')
-                pprint(filtered_categories)
-            else:
-                print('\n❌ No category found.')
-        case 'get by name':
-            cat_name = input('Category name: ').lower()
+#             filtered_categories = [category for category in categories.values() if cat_name in category.get('name', '').lower()]
 
-            filtered_categories = [category for category in categories.values() if cat_name in category.get('name', '').lower()]
+#             if filtered_categories:
+#                 print('🔍 Matching Categories:')
+#                 pprint(filtered_categories)
+#             else:
+#                 print('❌ No category found.')
+#         case 'update':
+#             category_key = input('Category Key: ').lower()
 
-            if filtered_categories:
-                print('\n🔍 Matching Categories:')
-                pprint(filtered_categories)
-            else:
-                print('\n❌ No category found.')
-        case 'update':
-            cat_id = input('Category id: ').lower()
+#             is_exist = any(key == category_key for key in categories.keys())
 
-            if cat_id in categories:
-                new_name = input('Please type a category name: ')
-                new_descp = input('Please type a description: ')
+#             if is_exist:
+#                 new_name = input('Please type a category name: ')
+#                 new_descp = input('Please type a description: ')
 
-                print("\nBefore:")
-                pprint({cat_id: categories[cat_id]})
+#                 categories.update({
+#                     category_key: {
+#                         'name': new_name,
+#                         'description': new_descp
+#                     }                    
+#                 })
 
-                categories[cat_id].update({
-                    'name': new_name,
-                    'description': new_descp
-                })
+#                 print(
+#                     f'{category_key} has been edited..!\n'
+#                     f'{categories[category_key]}'
+#                 )
+#             else:
+#                 print('There is no such a category..!')
+#         case 'delete':
+#             category_key = input('Category Key: ').lower()
 
-                print('\n✏️ Category updated successfully!')
-                pprint({cat_id: categories[cat_id]})
+#             is_exist = any(key == category_key for key in categories.keys())
 
-                print('\n📦 All Categories:')
-                pprint(categories)
-            else:
-                print('\n❌ No category found.')
-        case 'delete':
-            cat_id = input('Category id: ').lower()
+#             if is_exist:
+#                 del categories[category_key]
 
-            if cat_id in categories:
-                del categories[cat_id]
-                print('\n🗑 Category deleted successfully!')
-
-                print('\n📦 All Categories:')
-                pprint(categories)
-            else:
-                print('\n❌ No category found.')
-        case 'exit':
-            print('\n👋 Exiting application...')
-            break
-        case _:
-            print('\n❌ Invalid process type!')
+#                 print(
+#                     f'{category_key} has been removed..!\n'
+#                     f'{categories}'
+#                 )
+#             else:
+#                 print('There is no such a category..!')
+#         case 'exit':
+#             print('👋 Exiting application...')
+#             break
+#         case _:
+#             print('❌ Invalid process type!')
 # endregion
 
 
