@@ -152,10 +152,13 @@ while True:
         try:
             # NAME INPUT
             while True:
-                raw_name = input("Name: ").strip()
+                raw_name = input("Name: ").strip()  # Kullanıcının başta/sonda boşlukla yanlış giriş yapmasını engeller.
 
                 # Fazla boşlukları tek boşluğa indir
                 raw_name = " ".join(raw_name.split())
+
+                #       - split()      → string'i boşluklardan parçalar (fazla boşlukları yok eder)
+                #       - join(...)    → parçaları TEK boşlukla birleştirir
 
                 # Türkçe karakterleri sadeleştir
                 raw_name = (
