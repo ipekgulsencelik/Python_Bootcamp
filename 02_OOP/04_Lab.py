@@ -1,5 +1,6 @@
 
 #! Encapsulation (Veri Gizleme)
+
 # Bir sınıfın her hangi bir üyesini encapsulation ettiğimiz zaman, ilgili üyeye alt sınıflardan erişimi kapatmış oluyoruz. 
 # Yani enkapsüle edilmiş üye alt sınıflarda değiştirilemeyecektir. 
 # Buna bir nevi sınıf dışında erişime yani müdahele kapamamkta diyebiliriz. 
@@ -102,5 +103,5 @@ description = input("Desctiption: ")
 price = int(input("Price: "))
 stock = int(input("Stock: "))
 
-p1 = Product(name, description)
-p1.set_value_product_private_attribute(price, stock)
+product_1 = Product(name, description)
+product_1.set_value_product_private_attribute(price, stock)

@@ -382,135 +382,136 @@
 # file.write('Bill Information')
 # file.close()
 
-from __future__ import annotations
-from datetime import datetime
-from pathlib import Path
+# from __future__ import annotations
+# from datetime import datetime
+# from pathlib import Path
 
 
-class BaseBill:
-    """
-    BaseBill (Parent)
+# class BaseBill:
+#     """
+#     BaseBill (Parent)
 
-    Ortak alanlar:
-        bill_name (str)
-        unit_price (float)     -> birim fiyat (TL/kWh, TL/m3, TL/mill vb.)
-        amount (float)    -> tüketim
+#     Ortak alanlar:
+#         bill_name (str)
+#         unit_price (float)     -> birim fiyat (TL/kWh, TL/m3, TL/mill vb.)
+#         amount (float)    -> tüketim
 
-    Ortak metotlar:
-        calculate_bill(): total = unit_price * amount
-        create_log(): bill_info.txt dosyasına log yazar
+#     Ortak metotlar:
+#         calculate_bill(): total = unit_price * amount
+#         create_log(): bill_info.txt dosyasına log yazar
 
-    Overriding:
-    - Child sınıflar hesaplamayı değiştirmek isterse calculate_bill override eder.
-    """
-    def __init__(self, bill_name: str, value_add_tax: float, amount: float):
-        # object attributes
-        self.bill_name = bill_name
-        self.value_add_tax = float(value_add_tax)
-        self.amount = float(amount)
+#     Overriding:
+#     - Child sınıflar hesaplamayı değiştirmek isterse calculate_bill override eder.
+#     """
+#     def __init__(self, bill_name: str, value_add_tax: float, amount: float):
+#         # object attributes
+#         self.bill_name = bill_name
+#         self.value_add_tax = float(value_add_tax)
+#         self.amount = float(amount)
 
-        # basit doğrulamalar
-        if self.value_add_tax < 0:
-            raise ValueError("value_add_tax cannot be negative.")
-        if self.amount < 0:
-            raise ValueError("amount cannot be negative.")
+#         # basit doğrulamalar
+#         if self.value_add_tax < 0:
+#             raise ValueError("value_add_tax cannot be negative.")
+#         if self.amount < 0:
+# #             raise ValueError("amount cannot be negative.")
 
-    def calculate_bill(self) -> float:
-        """
-        Toplam tutarı hesaplar.
-        value_add_tax * amount
-        """
-        return self.value_add_tax * self.amount
+#     def calculate_bill(self) -> float:
+#         """
+#         Toplam tutarı hesaplar.
+#         value_add_tax * amount
+#         """
+#         return self.value_add_tax * self.amount
     
-    def create_log(self, payment_date: str | None = None, file_name: str = "bill_info.txt") -> None:
-        """
-        bill_info.txt dosyasına:
-        - bill name
-        - total amount
-        - payment date
-        yazar (append).
+#     def create_log(self, payment_date: str | None = None, file_name: str = "bill_info.txt") -> None:
+#         """
+#         bill_info.txt dosyasına:
+#         - bill name
+#         - total amount
+#         - payment date
+#         yazar (append).
 
-        payment_date verilmezse: bugünün tarihi saat ile yazılır.
+#         payment_date verilmezse: bugünün tarihi saat ile yazılır.
 
-        Format:
-            [YYYY-MM-DD HH:MM:SS] Bill: ... | Total: 123.45
-        """
-        total_amount = self.calculate_bill()
+#         Format:
+#             [YYYY-MM-DD HH:MM:SS] Bill: ... | Total: 123.45
+#         """
+#         total_amount = self.calculate_bill()
 
-        if payment_date is None:
-            payment_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#         if payment_date is None:
+#             payment_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        log_line = f"[{payment_date}] Bill: {self.bill_name} | Total: {total_amount:.2f}\n"
+#         log_line = f"[{payment_date}] Bill: {self.bill_name} | Total: {total_amount:.2f}\n"
 
-        path = Path(file_name)
-        if not path.exists():
-            path.write_text(data="", encoding="utf-8")
+#         path = Path(file_name)
+#         if not path.exists():
+#             path.write_text(data="", encoding="utf-8")
 
-        with open(file=file_name, mode="a", encoding="utf-8") as file:
-            file.write(log_line)
-
-
-# Child Class - WaterBill
-class WaterBill(BaseBill):
-    """
-    WaterBill (Child)
-    - mll: instance attribute
-    amount = mll olarak BaseBill'e aktarılır
-    """
-
-    def __init__(self, bill_name: str, value_add_tax: float, mill: float):
-        self.mill = float(mill)  # child'a özel attribute
-        super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.mill)
-
-    def calculate_bill(self):
-        # return super().calculate_bill() * self.mill
-        return self.amount * self.value_add_tax * self.mill
+#         with open(file=file_name, mode="a", encoding="utf-8") as file:
+#             file.write(log_line)
 
 
-# Child Class - NaturalGasBill
-class NaturalGasBill(BaseBill):
-    """
-    NaturalGasBill (Child)
-    - m3: instance attribute
-    amount = m3 olarak BaseBill'e aktarılır
-    """
+# # Child Class - WaterBill
+# class WaterBill(BaseBill):
+#     """
+#     WaterBill (Child)
+#     - mll: instance attribute
+#     amount = mll olarak BaseBill'e aktarılır
+#     """
 
-    def __init__(self, bill_name: str, value_add_tax: float, m3: float):
-        self.m3 = float(m3)
-        super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.m3)
+#     def __init__(self, bill_name: str, value_add_tax: float, mill: float):
+#         self.mill = float(mill)  # child'a özel attribute
+#         super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.mill)
 
-    def calculate_bill(self):
-        # return super().calculate_bill() * self.m3
-        return self.amount * self.value_add_tax * self.m3
+#     def calculate_bill(self):
+#         # return super().calculate_bill() * self.mill
+#         return self.amount * self.value_add_tax * self.mill
 
 
-# Child Class - ElectricityBill
-class ElectricityBill(BaseBill):
-    """
-    ElectricityBill (Child)
-    - kw: instance attribute
-    amount = kw olarak BaseBill'e aktarılır
-    """
+# # Child Class - NaturalGasBill
+# class NaturalGasBill(BaseBill):
+#     """
+#     NaturalGasBill (Child)
+#     - m3: instance attribute
+#     amount = m3 olarak BaseBill'e aktarılır
+#     """
 
-    def __init__(self, bill_name: str, value_add_tax: float, kw: float):
-        self.kw = float(kw)
-        super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.kw)
+#     def __init__(self, bill_name: str, value_add_tax: float, m3: float):
+#         self.m3 = float(m3)
+#         super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.m3)
 
-    def calculate_bill(self):
-        # return super().calculate_bill() * self.kw
-        return self.amount * self.value_add_tax * self.kw
+#     def calculate_bill(self):
+#         # return super().calculate_bill() * self.m3
+#         return self.amount * self.value_add_tax * self.m3
+
+
+# # Child Class - ElectricityBill
+# class ElectricityBill(BaseBill):
+#     """
+#     ElectricityBill (Child)
+#     - kw: instance attribute
+#     amount = kw olarak BaseBill'e aktarılır
+#     """
+
+#     def __init__(self, bill_name: str, value_add_tax: float, kw: float):
+#         self.kw = float(kw)
+#         super().__init__(bill_name=bill_name, value_add_tax=value_add_tax, amount=self.kw)
+
+#     def calculate_bill(self):
+#         # return super().calculate_bill() * self.kw
+#         return self.amount * self.value_add_tax * self.kw
 
 
 # TEST
-water = WaterBill(bill_name="Water Bill", value_add_tax=2.75, mll=120)
-print("Water total:", water.calculate_bill())
-water.create_log(payment_date="2026-01-14 20:30:00")
+# water = WaterBill(bill_name="Water Bill", value_add_tax=2.75, mll=120)
+# print("Water total:", water.calculate_bill())
+# water.create_log(payment_date="2026-01-14 20:30:00")
 
-gas = NaturalGasBill(bill_name="Natural Gas Bill", value_add_tax=6.40, m3=35)
-print("Gas total:", gas.calculate_bill())
-gas.create_log()  # otomatik tarih
+# gas = NaturalGasBill(bill_name="Natural Gas Bill", value_add_tax=6.40, m3=35)
+# print("Gas total:", gas.calculate_bill())
+# gas.create_log()  # otomatik tarih
 
-electric = ElectricityBill(bill_name="Electricity Bill", value_add_tax=3.10, kw=210)
-print("Electric total:", electric.calculate_bill())
-electric.create_log()
+# electric = ElectricityBill(bill_name="Electricity Bill", value_add_tax=3.10, kw=210)
+# print("Electric total:", electric.calculate_bill())
+# electric.create_log()
+
 # endregion
